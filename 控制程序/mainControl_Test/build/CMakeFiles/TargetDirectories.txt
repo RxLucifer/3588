@@ -1,0 +1,3 @@
+/home/ztl/mainControl_Test/build/CMakeFiles/MainControl.dir
+/home/ztl/mainControl_Test/build/CMakeFiles/edit_cache.dir
+/home/ztl/mainControl_Test/build/CMakeFiles/rebuild_cache.dir

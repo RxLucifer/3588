@@ -1,0 +1,1 @@
+time_stamp,time_stamp_decision,latitude,longitude,map_latitude,map_longitude,alpha,steer_value,can_steer,speed_cmd,vehicle_speed,vehicle_steer,

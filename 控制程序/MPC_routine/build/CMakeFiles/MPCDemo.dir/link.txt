@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/MPCDemo.dir/MPC.cpp.o CMakeFiles/MPCDemo.dir/MPC_demo.cpp.o -o MPCDemo   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib: -lGeographicLib -lipopt -lpthread

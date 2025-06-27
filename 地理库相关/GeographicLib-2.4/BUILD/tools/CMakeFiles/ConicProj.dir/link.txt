@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Wextra -Wfloat-conversion -O3 -DNDEBUG   CMakeFiles/ConicProj.dir/ConicProj.cpp.o  -o ConicProj  -Wl,-rpath,/home/ztl/GeographicLib-2.4/BUILD/src: ../src/libGeographicLib.so.26.1.0 

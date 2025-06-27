@@ -1,0 +1,7 @@
+/home/ztl/MPC_routine/build/CMakeFiles/MPCDemo.dir
+/home/ztl/MPC_routine/build/CMakeFiles/edit_cache.dir
+/home/ztl/MPC_routine/build/CMakeFiles/rebuild_cache.dir
+/home/ztl/MPC_routine/build/CMakeFiles/list_install_components.dir
+/home/ztl/MPC_routine/build/CMakeFiles/install.dir
+/home/ztl/MPC_routine/build/CMakeFiles/install/local.dir
+/home/ztl/MPC_routine/build/CMakeFiles/install/strip.dir

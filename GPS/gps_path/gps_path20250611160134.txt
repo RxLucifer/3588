@@ -1,0 +1,7 @@
+Latitude: 39.20770646, Longitude: 117.22632505, Heading: -164.81000000, Status: 2
+Latitude: 39.20770646, Longitude: 117.22632504, Heading: -164.81000000, Status: 2
+Latitude: 39.20770647, Longitude: 117.22632502, Heading: -164.81000000, Status: 2
+Latitude: 39.20770647, Longitude: 117.22632501, Heading: -164.80000000, Status: 2
+Latitude: 39.20770648, Longitude: 117.22632499, Heading: -164.80000000, Status: 2
+Latitude: 39.20770649, Longitude: 117.22632498, Heading: -164.79000000, Status: 2
+Latitude: 39.20770655, Longitude: 117.22632485, Heading: -164.77000000, Status: 2

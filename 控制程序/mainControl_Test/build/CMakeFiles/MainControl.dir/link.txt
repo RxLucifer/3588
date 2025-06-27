@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/MainControl.dir/src/control.cpp.o CMakeFiles/MainControl.dir/src/optimal_lookahead_calculator.cpp.o -o MainControl  -Wl,-rpath,/usr/local/lib -lipopt /usr/local/lib/libGeographicLib.so.26.1.0 -lpthread
