@@ -23,6 +23,8 @@ sudo make install
 三.进入ztl下的.bashrc（默认隐藏，使用ctrl+H显示），在最后添加如下两行
 	1 cd /home/ztl
 	2 ./setup_can.sh
+	3 cd /home/ztl/Monitor_MainControl/
+	4 ./compile_and_run_monitor.sh
 四.安装expect 解释器：sudo apt-get update
 	sudo apt-get install expect
 五.将mainControl_Test拷贝至/home/ztl，根据程序版本进行编译
