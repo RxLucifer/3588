@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/ztl/mainControl_Test/include -I/usr/local/include/coin-or -I/usr/local/include/coin-or/hsl -I/usr/local/include/coin-or/mumps -I/usr/include/eigen3 -I/usr/local/include/GeographicLib
 
-CXX_FLAGS = -std=gnu++17
+CXX_FLAGS = -O3 -DNDEBUG -O3 -march=native -DNDEBUG -flto -std=gnu++17
 

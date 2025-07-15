@@ -1,11 +1,11 @@
 /****************************************************************************/
 /*  项目名称：中邮快递车自动驾驶控制系统                                        */
-/*  文件名称：control_HY_0708.cpp                                           */
+/*  文件名称：control_HY_0617.cpp                                           */
 /*  创建时间：2025-05-13                                                     */
-/*  最后修改：2025-07-08                                                     */
-/*  当前版本：v2.1.0-Gamma                                                   */
-/*  开发人员：RXL                                                             */
-/*  项目描述：联调测试版本-中邮快递车自动驾驶控制程序                               */
+/*  最后修改：2025-06-17                                                     */
+/*  当前版本：v2.0.9-beta                                                   */
+/*  开发人员：RXL                                                          */
+/*  项目描述：基于日本大巴车控制系统改写的中邮快递车自动驾驶控制程序              */
 /****************************************************************************/
 
 /****************************************************************************/
@@ -22,7 +22,7 @@
 /*    3. [新增] 实现控制策略，基于双状态冲突判断机制                           */
 /*    4. [测试] 完成启动-换挡-行驶-停车完整流程测试                           */
 /*    5. [验证] 急停功能测试通过                                              */
-/*    6. [集成] 优化代码结构，集成CAN报文解析和发送模块                       */
+/*    6. [集成] 优化代码结构，集成CAN报文解析和发送模块                       */  
 /****************************************************************************/
 
 /*  版本：v1.1.0-alpha                                                      */
@@ -172,7 +172,7 @@
 /*       - 验证不同命名方式下的文件生成                                      */
 /*       - 确认远程控制地图记录的可靠性                                      */
 /*       - 测试系统在长时间运行中的稳定性                                    */
-/****************************************************************************/
+/****************************************************************************/ 
 /*  版本：v2.0.5-beta                                                       */
 /*  日期：2025-06-09                                                        */
 /*  修改人：RXL                                                           */
@@ -203,27 +203,6 @@
 /*  日期：2025-06-10                                                        */
 /*  修改人：RXL                                                           */
 /*  变更类型：[综合] 系统稳定性与性能优化                                    */
-/****************************************************************************/
-/*  版本：v2.1.0-beta                                                       */
-/*  日期：2025-07-01                                                        */
-/*  修改人：RXL                                                           */
-/*  变更类型：[优化] 多模式控制与UDP通信增强                                 */
-/*  主要变更：                                                               */
-/*    1. [优化] 改进UDP数据接收稳定性，减少丢包率                            */
-/*    2. [增强] 添加多模式切换时的状态验证机制                              */
-/*    3. [修复] 解决地图录制模式下的内存泄漏问题                            */
-/*    4. [测试] 完成多模式系统长时间运行稳定性测试                          */
-/****************************************************************************/
-/*  版本：v2.1.1-beta                                                       */
-/*  日期：2025-07-02                                                        */
-/*  修改人：RXL                                                           */
-/*  变更类型：[优化] 曲率计算与预瞄距离优化                                  */
-/*  主要变更：                                                               */
-/*    1. [修复] 解决optimal_lookahead_calculator.cpp中曲率计算P1坐标0.0问题 */
-/*    2. [优化] 改进曲率计算算法，增加索引有效性检查                         */
-/*    3. [增强] 添加曲率计算调试日志输出                                     */
-/*    4. [测试] 验证不同路况下的曲率计算准确性                               */
-/****************************************************************************/
 /*  主要变更：                                                               */
 /*    1. [修复] 智能控制状态管理系统                                        */
 /*       - 解决UDP传输时间不一致导致的自动/手动驾驶模式频繁切换              */
@@ -278,7 +257,7 @@
 /*    4. [测试] 验证日志记录功能                                            */
 /*       - 确认修改后的雷达数据正确显示为十进制格式                         */
 /*       - 验证CAN帧数据正确显示为十进制格式                                */
-/*       - 测试日志文件格式的一致性和可读性                                 */
+/*       - 测试日志文件格式的一致性和可读性                                 */ 
 /****************************************************************************/
 /*  版本：v2.0.7-beta                                                       */
 /*  日期：2025-06-12                                                        */
@@ -317,28 +296,6 @@
 /*    3. [新增] 创建编译脚本 `compile_test_dynamic.bat` 用于编译测试程序。    */
 /*    4. [调试] 解决 `compile_test_dynamic.bat` 编译错误，主要为字符编码和路径问题。*/
 /*    5. [文档] 创建技术文档 `动态曲率计算优化说明.md`，详细说明优化方案。    */
-/****************************************************************************/
-/*  版本：v2.1.0-beta                                                       */
-/*  日期：2025-07-01                                                        */
-/*  修改人：RXL                                                           */
-/*  变更类型：[优化] 坐标系转换与地图数据处理增强                              */
-/*  主要变更：                                                               */
-/*    1. [新增] 高德坐标系(GCJ-02)到WGS84坐标系转换功能                      */
-/*       - 实现GCJ02ToWGS84坐标转换函数，支持精确坐标系转换                  */
-/*       - 添加中国区域判断逻辑，确保坐标转换的准确性                         */
-/*       - 使用偏移矩阵算法实现高精度坐标转换                                */
-/*    2. [优化] 地图数据处理流程                                            */
-/*       - 在地图数据接收后自动进行坐标系转换                                */
-/*       - 将高德坐标系数据转换为WGS84坐标系，提高导航精度                   */
-/*       - 添加坐标转换日志输出，便于调试和验证                              */
-/*    3. [改进] 路径点插值算法                                              */
-/*       - 优化insertTargetPoints函数，使用转换后的WGS84坐标                */
-/*       - 提高B样条插值精度，生成更平滑的路径曲线                           */
-/*       - 完善航向角计算，提高转弯预测准确性                                */
-/*    4. [测试] 完成坐标转换功能验证                                        */
-/*       - 验证不同区域的坐标转换精度                                        */
-/*       - 确认转换后路径点的导航效果                                        */
-/*       - 测试系统在复杂路况下的轨迹跟踪性能                                */
 /****************************************************************************/
 
 /****************************************************************************/
@@ -384,7 +341,7 @@
 #include <unistd.h>
 #include <cstdio>
 #include <sys/ioctl.h>
-#include <sys/socket.h>
+#include <sys/socket.h> 
 #include <linux/can.h>
 #include <linux/can/raw.h>
 #include <net/if.h>
@@ -397,8 +354,7 @@
 #include <algorithm> // 取消注释以支持std::clamp函数
 #include <cmath>
 #include <iostream>
-#include <atomic>    // 支持原子操作
-#include <chrono>    // 支持时间操作 
+#include <chrono> // 添加对std::chrono的支持
 #include <vector>
 #include <pthread.h>
 #include <atomic>
@@ -420,9 +376,8 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <signal.h>
-#include <errno.h>
 
-#include "optimal_lookahead_calculator.h" //Ld调参算法头文件
+#include "optimal_lookahead_calculator.h"   //Ld调参算法头文件
 
 //=======================
 using namespace std;
@@ -435,137 +390,65 @@ using namespace std;
 #define NUM_THREADS 6
 #define BUFSIZE 800
 #define SERV_PORT 8000
-#define SERIAL_PORT "/dev/ttyS7"       // GPS串口设备路径
+#define SERIAL_PORT "/dev/ttyS7"     // GPS串口设备路径
 #define RADAR_SERIAL_PORT "/dev/ttyS3" // 雷达串口设备路径
-#define BAUD_RATE B115200              // 波特率设置为 115200
-#define NUM_PROBES 12                  // 每个雷达的探头数量
+#define BAUD_RATE B115200            // 波特率设置为 115200
+#define NUM_PROBES 12                // 每个雷达的探头数量
 
 // ============================================================================
 // 全局变量声明 - 最优预瞄点算法相关
 // ============================================================================
-bool use_optimized_lookahead = true; // 是否使用优化算法的开关
-double Puresuit_lateral_error = 0.0; // 横向误差，用于记录
+bool use_optimized_lookahead = true;  // 是否使用优化算法的开关 
+double Puresuit_lateral_error = 0.0;    //横向误差，用于记录
 
 // ============================================================================
 // 全局变量声明 - CAN通信相关
 // ============================================================================
-unsigned char rev_data[8];             // CAN接收数据缓冲区
-unsigned char send_data[8];            // CAN发送数据缓冲区
-std::vector<can_frame> eightFrames;    // CAN帧向量
-std::mutex framesMutex;                // CAN帧互斥锁
+unsigned char rev_data[8];           // CAN接收数据缓冲区
+unsigned char send_data[8];          // CAN发送数据缓冲区
+std::vector<can_frame> eightFrames;  // CAN帧向量
+std::mutex framesMutex;              // CAN帧互斥锁
 std::atomic<bool> flag_canSend{false}; // CAN发送标志
-// ==================== CAN套接字管理优化 ====================
-int can_sockfd = -1;                   // CAN套接字文件描述符
-std::atomic<bool> can_socket_valid(false);  // CAN套接字有效性标志
-pthread_mutex_t can_socket_mutex;           // CAN套接字访问互斥锁
-int can_init_retry_count = 0;               // CAN初始化重试计数器
-int can_retry_count = 0;                    // CAN重试计数器
-const int MAX_CAN_INIT_RETRIES = 5;         // 最大重试次数
-const int MAX_CAN_RETRIES = 3;              // 最大CAN重试次数
-std::chrono::steady_clock::time_point last_can_error_time; // 上次CAN错误时间
-int consecutive_can_errors = 0;             // 连续CAN错误计数
-const int MAX_CONSECUTIVE_ERRORS = 3;       // 最大连续错误数
-
-// CAN通信统计信息
-struct CANStats {
-    uint64_t total_sent;
-    uint64_t total_failed;
-    uint64_t socket_reinits;
-    int last_error_code;
-    std::chrono::steady_clock::time_point start_time;
-    pthread_mutex_t stats_mutex;
-    
-    CANStats() : total_sent(0), total_failed(0), socket_reinits(0), last_error_code(0),
-                 start_time(std::chrono::steady_clock::now()) {
-        pthread_mutex_init(&stats_mutex, NULL);
-    }
-    
-    ~CANStats() {
-        pthread_mutex_destroy(&stats_mutex);
-    }
-    
-    double get_success_rate() const {
-        if (total_sent == 0) return 100.0;
-        return (double)(total_sent - total_failed) / total_sent * 100.0;
-    }
-    
-    void print_stats() const {
-        pthread_mutex_lock(const_cast<pthread_mutex_t*>(&stats_mutex));
-        auto now = std::chrono::steady_clock::now();
-        auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - start_time).count();
-        printf("CAN统计信息 [运行时间: %lds]:\n", duration);
-        printf("  总发送: %lu, 失败: %lu, 成功率: %.2f%%\n", 
-               total_sent, total_failed, get_success_rate());
-        printf("  套接字重初始化次数: %lu\n", socket_reinits);
-        printf("  最后错误代码: %d\n", last_error_code);
-        pthread_mutex_unlock(const_cast<pthread_mutex_t*>(&stats_mutex));
-    }
-    
-    void increment_sent() {
-        pthread_mutex_lock(&stats_mutex);
-        total_sent++;
-        pthread_mutex_unlock(&stats_mutex);
-    }
-    
-    void increment_failed() {
-        pthread_mutex_lock(&stats_mutex);
-        total_failed++;
-        pthread_mutex_unlock(&stats_mutex);
-    }
-    
-    void increment_reinits() {
-        pthread_mutex_lock(&stats_mutex);
-        socket_reinits++;
-        pthread_mutex_unlock(&stats_mutex);
-    }
-    
-    void set_last_error(int error_code) {
-        pthread_mutex_lock(&stats_mutex);
-        last_error_code = error_code;
-        pthread_mutex_unlock(&stats_mutex);
-    }
-};
-
-CANStats can_stats; // 全局CAN统计对象
-int cout_can;                          // CAN初始化计数器
-                                       // 功能：0-需要初始化，-1-结束，其余-控制或刹车帧
+int can_sockfd = -1;                 // CAN套接字文件描述符
+int cout_can;                        // CAN初始化计数器
+                                     // 功能：0-需要初始化，-1-结束，其余-控制或刹车帧
 
 // ============================================================================
 // 全局变量声明 - 系统控制相关
 // ============================================================================
-bool running = true;                           // 控制线程运行标志
-bool enable_gps = true;                       // GPS功能开关：true-启用GPS，false-使用模拟数据
-int ControlState = 1;                          // 控制状态：0-未切换，1-决策控制，2-远程控制
-double _target_ind;                            // 目标索引
+bool running = true;                 // 控制线程运行标志
+bool enable_gps = true;              // GPS功能开关：true-启用GPS，false-使用模拟数据
+int ControlState = 1;                // 控制状态：0-未切换，1-决策控制，2-远程控制
+double _target_ind;                  // 目标索引
 int rev_ok, rev_save_ok, rev_first, begin_run; // 接收状态标志
-unsigned long rev_count, frame_count;          // 计数器
+unsigned long rev_count, frame_count; // 计数器
 
-int thread_mapRecord = 0; // 地图记录线程控制标志：0-正常运行，1-地图记录模式
+int thread_mapRecord = 0;            // 地图记录线程控制标志：0-正常运行，1-地图记录模式
 
 // ============================================================================
 // 全局变量声明 - 控制状态管理相关
 // ============================================================================
 std::chrono::steady_clock::time_point last_rdc_time; // 最后一次接收到RDC数据的时间
-std::mutex control_state_mutex;                      // 控制状态互斥锁
-const int RDC_TIMEOUT_MS = 10000;                    // RDC超时时间：10秒
-const int RDC_TIMEOUT_CYCLES = 100;                  // RDC超时周期：100个周期
-bool rdc_ever_received = false;                      // 是否曾经接收过RDC数据
+std::mutex control_state_mutex;      // 控制状态互斥锁
+const int RDC_TIMEOUT_MS = 10000;    // RDC超时时间：10秒
+const int RDC_TIMEOUT_CYCLES = 100;  // RDC超时周期：100个周期
+bool rdc_ever_received = false;      // 是否曾经接收过RDC数据
 
 // ============================================================================
 // 全局变量声明 - 雷达相关
 // ============================================================================
-std::mutex radar_mutex; // 雷达数据互斥锁
+std::mutex radar_mutex;              // 雷达数据互斥锁
 // std::condition_variable radar_cv;    // 雷达条件变量
 // bool radar_ready = false;            // 雷达线程准备标志
-int radarDataEA[NUM_PROBES]; // 存储EA地址的12个探头数据
-int radarDataE8[NUM_PROBES]; // 存储E8地址的12个探头数据
-
+int radarDataEA[NUM_PROBES];         // 存储EA地址的12个探头数据
+int radarDataE8[NUM_PROBES];         // 存储E8地址的12个探头数据
+ 
 // ============================================================================
 // 全局变量声明 - 日志相关
 // ============================================================================
-std::ofstream logFile; // 日志文件流
-int recordCounter = 0; // 记录计数器
-FILE *fp;              // 文件指针
+std::ofstream logFile;               // 日志文件流
+int recordCounter = 0;               // 记录计数器
+FILE *fp;                           // 文件指针
 
 // ============================================================================
 // 结构体定义 - 控制相关
@@ -577,13 +460,12 @@ FILE *fp;              // 文件指针
  */
 typedef struct controlOutput
 {
-    double vehicle_speed;     // 当前车速 (km/h)
-    int controlOut_gear;      // 档位状态
-    float Soc_LOW;            // SOC低压电池状态 (%)
-    float Soc_HIGH;           // SOC高压电池状态 (%)
-    int Emgy_brk_En;          // 急刹使能状态：0-禁用，1-启用
-    int controlOut_ErrorCode; // 错误码
-    int drive_status;         // 驾驶模式：0：待机 / 1：中断 / 2：紧急模式 / 3：人工模式 / 4：遥控模式 / 5：智驾模式 / 6：云端遥控（预留） / 7：维修模式
+    double vehicle_speed;            // 当前车速 (km/h)
+    int controlOut_gear;             // 档位状态
+    float Soc_LOW;                   // SOC低压电池状态 (%)
+    float Soc_HIGH;                  // SOC高压电池状态 (%)
+    int Emgy_brk_En;                 // 急刹使能状态：0-禁用，1-启用
+    int controlOut_ErrorCode;        // 错误码
 } CONTROL_OUT;
 
 /**
@@ -593,40 +475,40 @@ typedef struct controlOutput
 typedef struct decisionInput
 {
     // 启动控制
-    int bStart; // 启动标签：0-不启动，1-启动
-
+    int bStart;                      // 启动标签：0-不启动，1-启动
+    
     // 制动控制 (CAN ID: 0x210)
-    float brake_bar;     // 刹车压力 (bar)
-    double breaking_dis; // 刹车距离 (m)
-
+    float brake_bar;                 // 刹车压力 (bar)
+    double breaking_dis;             // 刹车距离 (m)
+    
     // 驻车控制 (CAN ID: 0x220)
-    int EPB_park; // 驻车使能：0-移除，1-驻车
-
+    int EPB_park;                    // 驻车使能：0-移除，1-驻车
+    
     // 驱动控制 (CAN ID: 0x240)
-    int gear;         // 档位：1-P档，3-R档，5-N档，9-D档
-    double endSpeed;  // 末速度 (km/h)
-    int controlMode;  // 控制模式：1-速度模式，2-扭矩模式，3-油门请求模式
-    double PedposReq; // 油门请求百分比 (%)
-
+    int gear;                        // 档位：1-P档，3-R档，5-N档，9-D档
+    double endSpeed;                 // 末速度 (km/h)
+    int controlMode;                 // 控制模式：1-速度模式，2-扭矩模式，3-油门请求模式
+    double PedposReq;                // 油门请求百分比 (%)
+    
     // 紧急控制 (CAN ID: 0x251)
-    int Emgy_brk_En;           // 急刹使能：0-移除，1-急刹
-    int Emgy_brk_ReqRmv;       // 急刹移除：0-移除，1-急刹移除
-    int Emgy_FtCrashRemove;    // 前触边移除：0-不移除，1-移除
-    int Emgy_RrrCrashRemove;   // 后触边移除：0-不移除，1-移除
-    int Emgy_LeftCrashRemove;  // 左触边移除：0-不移除，1-移除
-    int Emgy_RightCrashRemove; // 右触边移除：0-不移除，1-移除
-
+    int Emgy_brk_En;                 // 急刹使能：0-移除，1-急刹
+    int Emgy_brk_ReqRmv;             // 急刹移除：0-移除，1-急刹移除
+    int Emgy_FtCrashRemove;          // 前触边移除：0-不移除，1-移除
+    int Emgy_RrrCrashRemove;         // 后触边移除：0-不移除，1-移除
+    int Emgy_LeftCrashRemove;        // 左触边移除：0-不移除，1-移除
+    int Emgy_RightCrashRemove;       // 右触边移除：0-不移除，1-移除
+    
     // 附件控制 (CAN ID: 0x260)
-    int ADU_Hom;          // 喇叭控制
-    int ADU_BackLamp;     // 倒车灯控制
-    int ADU_TurnRLamp;    // 右转灯控制
-    int ADU_TurnLLamp;    // 左转灯控制
-    int ADU_DblFlashLamp; // 双闪灯控制
-    int ADU_LowBeamLamp;  // 近光灯控制
-    int ADU_WidthLamp;    // 示宽灯控制
-    int ADU_HighBeamLamp; // 远光灯控制
-    int ADU_FogLamp;      // 雾灯控制
-    int ADU_BrkLamp;      // 制动灯控制
+    int ADU_Hom;                     // 喇叭控制
+    int ADU_BackLamp;                // 倒车灯控制
+    int ADU_TurnRLamp;               // 右转灯控制
+    int ADU_TurnLLamp;               // 左转灯控制
+    int ADU_DblFlashLamp;            // 双闪灯控制
+    int ADU_LowBeamLamp;             // 近光灯控制
+    int ADU_WidthLamp;               // 示宽灯控制
+    int ADU_HighBeamLamp;            // 远光灯控制
+    int ADU_FogLamp;                 // 雾灯控制
+    int ADU_BrkLamp;                 // 制动灯控制
 
     // 地图名称字符串
     std::string map_name;
@@ -636,8 +518,7 @@ typedef struct decisionInput
  * @brief 雷达参数结构体
  * @details 超声波雷达安全距离检测参数
  */
-typedef struct _radar_params
-{
+typedef struct _radar_params {
     int counter_EA;      // EA数组中小于安全距离的元素个数
     bool should_stop_EA; // 停车标识EA
     int counter_E8;      // E8数组中小于安全距离的元素个数
@@ -657,33 +538,35 @@ RADAR_PARAMS radar_params = {0, false, 0, false, false, 480, false}; // 初始�
 typedef struct RemoteDriveCommand
 {
     // 时间戳
-    long long RDC_timestamp; // 指令时间戳，Unix毫秒数，确保实时性
+    long long RDC_timestamp;         // 指令时间戳，Unix毫秒数，确保实时性
 
     // 制动控制 (CAN ID: 0x210)
-    double RDC_brake;          // 刹车力度：0-100范围 (%)
-    double RDC_steering_angle; // 目标方向盘转角 (度)
-    double RDC_throttle;       // 油门控制：0-100范围 (%)
+    double RDC_brake;                // 刹车力度：0-100范围 (%)
+    double RDC_steering_angle;       // 目标方向盘转角 (度)
+    double RDC_throttle;             // 油门控制：0-100范围 (%)
 
     // 驻车控制 (CAN ID: 0x220)
-    int RDC_Park; // 驻车使能：0-移除，1-驻车
+    int RDC_Park;                    // 驻车使能：0-移除，1-驻车
 
     // 紧急控制 (CAN ID: 0x251)
-    int RDC_gear;            // 档位：1-P档，3-R档，5-N档，9-D档
-    int RDC_Emgy_brk_En;     // 急刹使能：0-移除，1-急刹
-    int RDC_Emgy_brk_ReqRmv; // 急刹移除：0-移除，1-急刹移除
+    int RDC_gear;                    // 档位：1-P档，3-R档，5-N档，9-D档
+    int RDC_Emgy_brk_En;             // 急刹使能：0-移除，1-急刹
+    int RDC_Emgy_brk_ReqRmv;         // 急刹移除：0-移除，1-急刹移除
 
     // 附件控制 (CAN ID: 0x260)
-    int RDC_ADU_Hom;          // 喇叭控制
-    int RDC_ADU_BackLamp;     // 倒车灯控制
-    int RDC_ADU_TurnRLamp;    // 右转灯控制
-    int RDC_ADU_TurnLLamp;    // 左转灯控制
-    int RDC_ADU_DblFlashLamp; // 双闪灯控制
-    int RDC_ADU_LowBeamLamp;  // 近光灯控制
-    int RDC_ADU_WidthLamp;    // 示宽灯控制
-    int RDC_ADU_HighBeamLamp; // 远光灯控制
-    int RDC_ADU_FogLamp;      // 雾灯控制
-    int RDC_ADU_BrkLamp;      // 制动灯控制
+    int RDC_ADU_Hom;                 // 喇叭控制
+    int RDC_ADU_BackLamp;            // 倒车灯控制
+    int RDC_ADU_TurnRLamp;           // 右转灯控制
+    int RDC_ADU_TurnLLamp;           // 左转灯控制
+    int RDC_ADU_DblFlashLamp;        // 双闪灯控制
+    int RDC_ADU_LowBeamLamp;         // 近光灯控制
+    int RDC_ADU_WidthLamp;           // 示宽灯控制
+    int RDC_ADU_HighBeamLamp;        // 远光灯控制
+    int RDC_ADU_FogLamp;             // 雾灯控制
+    int RDC_ADU_BrkLamp;             // 制动灯控制
 } RDC_IN;
+
+
 
 // ============================================================================
 // 结构体定义 - 车辆参数与数据
@@ -695,21 +578,20 @@ typedef struct RemoteDriveCommand
  */
 typedef struct _vehicle_params
 {
-    double condition_time_stamp; // 状态时间戳
-    double gps_time_stamp;       // GPS时间戳
-    double vehicle_speed;        // 车辆速度 (km/h)
-    float steer_angle;           // 转向角 (度)
-    unsigned steer_angle_speed;  // 转向角速度 (度/秒)
-    float steer_cmd_callback;    // 转向命令回调
-    double engine_rpm;           // 发动机转速 (rpm)
-    char target_gear;            // 目标档位
-    double acc_pos;              // 油门位置 (%)
-    double brake_press;          // 制动压力 (bar)
-    char current_gear;           // 当前档位：'0'-'6', 'P', 'N'
-    double latitude;             // 纬度 (度)
-    double longitude;            // 经度 (度)
-    double heading_angle;        // 航向角 (度)
-    int work_mode;               // 工作模式：4-遥控，5-智驾
+    double condition_time_stamp;     // 状态时间戳
+    double gps_time_stamp;           // GPS时间戳
+    double vehicle_speed;            // 车辆速度 (km/h)
+    float steer_angle;               // 转向角 (度)
+    unsigned steer_angle_speed;      // 转向角速度 (度/秒)
+    float steer_cmd_callback;        // 转向命令回调
+    double engine_rpm;               // 发动机转速 (rpm)
+    char target_gear;                // 目标档位
+    double acc_pos;                  // 油门位置 (%)
+    double brake_press;              // 制动压力 (bar)
+    char current_gear;               // 当前档位：'0'-'6', 'P', 'N'
+    double latitude;                 // 纬度 (度)
+    double longitude;                // 经度 (度)
+    double heading_angle;            // 航向角 (度)
 } VPARAMS, *PVPARAMS;
 
 /**
@@ -718,13 +600,13 @@ typedef struct _vehicle_params
  */
 struct CanData
 {
-    int handshake_control;     // 握手控制：0-断开，1-连接
-    int gear_control;          // 档位控制
-    int park_control;          // 驻车控制：0-释放，1-驻车
-    double brake_deceleration; // 刹车减速度控制 (m/s²)
-    double steering_angle;     // 方向盘角度控制 (度)
-    double steering_speed;     // 方向盘角速度控制 (度/秒)
-    double vehicle_speed;      // 车速控制 (km/h)
+    int handshake_control;           // 握手控制：0-断开，1-连接
+    int gear_control;                // 档位控制
+    int park_control;                // 驻车控制：0-释放，1-驻车
+    double brake_deceleration;       // 刹车减速度控制 (m/s²)
+    double steering_angle;           // 方向盘角度控制 (度)
+    double steering_speed;           // 方向盘角速度控制 (度/秒)
+    double vehicle_speed;            // 车速控制 (km/h)
 };
 
 /**
@@ -733,13 +615,13 @@ struct CanData
  */
 typedef struct tagPosition
 {
-    double x; // X坐标 (m)
-    double y; // Y坐标 (m)
-
+    double x;                        // X坐标 (m)
+    double y;                        // Y坐标 (m)
+    
     // 构造函数
     tagPosition(double _x, double _y) : x(_x), y(_y) {}
     tagPosition() : x(0.0), y(0.0) {}
-
+    
     // 比较运算符
     bool operator==(const tagPosition &pt) { return (x == pt.x && y == pt.y); }
 } CPosition;
@@ -750,14 +632,13 @@ typedef struct tagPosition
  */
 struct MapToControl
 {
-    long version;        // 版本号/时间戳
-    int frameNum;        // 帧总数
-    int frameId;         // 当前帧号
-    int validNumInFrame; // 本帧有效数据数量
-    int padding;         // 手动补齐 4 字节，使数组 info 对齐到 8 字节
-    CPosition info[50];  // 路径点数组 (固定长度50)
+    long version;                    // 版本号/时间戳
+    int frameNum;                    // 帧总数
+    int frameId;                     // 当前帧号
+    int validNumInFrame;             // 本帧有效数据数量
+    int padding;                     // 手动补齐 4 字节，使数组 info 对齐到 8 字节
+    CPosition info[50];              // 路径点数组 (固定长度50)
 };
-MapToControl mapData;
 
 // ============================================================================
 // CAN报文解析结构体定义 (Author: LKS)
@@ -769,12 +650,12 @@ MapToControl mapData;
  */
 struct VCU_VehDynStatus
 {
-    double vehicle_speed;         // 车辆当前速度 (km/h)
-    float Veh_Ramp;               // 车辆坡度 (度)
-    uint8_t VehDynStat_RollCnt;   // 循环计数
-    uint8_t VehDyncStat_CheckSum; // 校验和
+    double vehicle_speed;            // 车辆当前速度 (km/h)
+    float Veh_Ramp;                  // 车辆坡度 (度)
+    uint8_t VehDynStat_RollCnt;      // 循环计数
+    uint8_t VehDyncStat_CheckSum;    // 校验和
 };
-struct VCU_VehDynStatus revin_4a2; // 全局实例
+struct VCU_VehDynStatus revin_4a2;   // 全局实例
 
 /**
  * @brief 驱动状态结构体
@@ -782,17 +663,17 @@ struct VCU_VehDynStatus revin_4a2; // 全局实例
  */
 struct VCU_DriveStatus
 {
-    uint8_t Drv_RunDir;       // 车辆实际运动方向：0-前进，1-后退
-    uint8_t Drv_DrvCtrlMode;  // 当前驱动控制模式
-    uint8_t Drv_WorkMode;     // 驱动系统工作模式
-    int Drv_GearAct;          // 实际档位
-    float Drv_MotTq;          // 电机实际转矩 (Nm)
-    uint16_t Drv_MotorSpeed;  // 电机实际转速 (rpm)
-    uint8_t DrvStat_RollCnt;  // 循环计数
-    uint8_t Drv_ErrLevel;     // 驱动系统故障等级
-    uint8_t DrvStat_CheckSum; // 校验和
+    uint8_t Drv_RunDir;              // 车辆实际运动方向：0-前进，1-后退
+    uint8_t Drv_DrvCtrlMode;         // 当前驱动控制模式
+    uint8_t Drv_WorkMode;            // 驱动系统工作模式
+    int Drv_GearAct;                 // 实际档位
+    float Drv_MotTq;                 // 电机实际转矩 (Nm)
+    uint16_t Drv_MotorSpeed;         // 电机实际转速 (rpm)
+    uint8_t DrvStat_RollCnt;         // 循环计数
+    uint8_t Drv_ErrLevel;            // 驱动系统故障等级
+    uint8_t DrvStat_CheckSum;        // 校验和
 };
-struct VCU_DriveStatus revin_441; // 全局实例
+struct VCU_DriveStatus revin_441;    // 全局实例
 
 /**
  * @brief 制动状态结构体
@@ -800,14 +681,14 @@ struct VCU_DriveStatus revin_441; // 全局实例
  */
 struct VCU_BrakeStatus
 {
-    uint8_t Brk_BrkCtrlMode;  // 当前制动控制模式
-    uint8_t Brk_WorkMode;     // 行车制动工作模式
-    float Brk_BrkPres;        // 当前实际制动压力 (bar)
-    uint8_t BrkStat_RollCnt;  // 循环计数
-    uint8_t Brk_ErrLevel;     // 行车制动系统故障等级
-    uint8_t BrkStat_CheckSum; // 校验和
+    uint8_t Brk_BrkCtrlMode;         // 当前制动控制模式
+    uint8_t Brk_WorkMode;            // 行车制动工作模式
+    float Brk_BrkPres;               // 当前实际制动压力 (bar)
+    uint8_t BrkStat_RollCnt;         // 循环计数
+    uint8_t Brk_ErrLevel;            // 行车制动系统故障等级
+    uint8_t BrkStat_CheckSum;        // 校验和
 };
-struct VCU_BrakeStatus revin_411; // 全局实例
+struct VCU_BrakeStatus revin_411;    // 全局实例
 
 /**
  * @brief 转向状态结构体
@@ -815,13 +696,13 @@ struct VCU_BrakeStatus revin_411; // 全局实例
  */
 struct VCU_SteeringStatus
 {
-    uint8_t Str_StrCtrlMode;  // 当前转向控制模式
-    uint8_t Str_WorkMode;     // 转向工作模式
-    float Str_StrWhlAngle;    // 实际方向盘转角 (度)
-    float Str_StrWhlAngleSpd; // 实际方向盘转角速度 (度/秒)
-    uint8_t StrStat_RollCnt;  // 循环计数
-    uint8_t Str_ErrLevel;     // 转向系统故障等级
-    uint8_t StrStat_CheckSum; // 校验和
+    uint8_t Str_StrCtrlMode;         // 当前转向控制模式
+    uint8_t Str_WorkMode;            // 转向工作模式
+    float Str_StrWhlAngle;           // 实际方向盘转角 (度)
+    float Str_StrWhlAngleSpd;        // 实际方向盘转角速度 (度/秒)
+    uint8_t StrStat_RollCnt;         // 循环计数
+    uint8_t Str_ErrLevel;            // 转向系统故障等级
+    uint8_t StrStat_CheckSum;        // 校验和
 };
 struct VCU_SteeringStatus revin_431; // 全局实例
 
@@ -831,15 +712,15 @@ struct VCU_SteeringStatus revin_431; // 全局实例
  */
 struct VCU_BatStatus01
 {
-    float LVBat_Volt;          // 12V低压电池电压 (V)
-    float Bat_BatCur;          // 动力电池电流 (A)
-    float Bat_BatVolt;         // 动力电池电压 (V)
-    float Bat_BatTemp;         // 动力电池温度 (°C)
-    uint8_t BatStat1_RollCnt;  // 循环计数
-    uint8_t Bat_ChrgSt;        // 动力电池充电状态
-    uint8_t BatStat1_CheckSum; // 校验和
+    float LVBat_Volt;                // 12V低压电池电压 (V)
+    float Bat_BatCur;                // 动力电池电流 (A)
+    float Bat_BatVolt;               // 动力电池电压 (V)
+    float Bat_BatTemp;               // 动力电池温度 (°C)
+    uint8_t BatStat1_RollCnt;        // 循环计数
+    uint8_t Bat_ChrgSt;              // 动力电池充电状态
+    uint8_t BatStat1_CheckSum;       // 校验和
 };
-struct VCU_BatStatus01 revin_471; // 全局实例
+struct VCU_BatStatus01 revin_471;    // 全局实例
 
 /**
  * @brief 电池状态02结构体
@@ -847,13 +728,13 @@ struct VCU_BatStatus01 revin_471; // 全局实例
  */
 struct VCU_BatStatus02
 {
-    float Bat_BatSOC;          // 动力电池SOC (%)
-    float Bat_BatSOH;          // 动力电池SOH (%)
-    uint8_t BatStat2_RollCnt;  // 循环计数
-    uint8_t Bat_ErrLevel;      // 电源系统故障等级
-    uint8_t BatStat2_CheckSum; // 校验和
+    float Bat_BatSOC;                // 动力电池SOC (%)
+    float Bat_BatSOH;                // 动力电池SOH (%)
+    uint8_t BatStat2_RollCnt;        // 循环计数
+    uint8_t Bat_ErrLevel;            // 电源系统故障等级
+    uint8_t BatStat2_CheckSum;       // 校验和
 };
-struct VCU_BatStatus02 revin_473; // 全局实例
+struct VCU_BatStatus02 revin_473;    // 全局实例
 
 /**
  * @brief 紧急状态结构体
@@ -861,24 +742,24 @@ struct VCU_BatStatus02 revin_473; // 全局实例
  */
 struct VCU_EmrgStatus
 {
-    uint8_t Emrg_Sw_St;           // 物理急停状态：0-正常，1-触发
-    uint8_t RrCrashTrg_St;        // 后碰撞触发状态：0-正常，1-触发
-    uint8_t FrCrashTrg_St;        // 前碰撞触发状态：0-正常，1-触发
-    uint8_t LeCrashTrg_St;        // 左碰撞触发状态：0-正常，1-触发
-    uint8_t RiCrashTrg_St;        // 右碰撞触发状态：0-正常，1-触发
-    uint8_t Emrg_VehEmrgStopErr;  // 物理急停触发故障
-    uint8_t Emrg_ADLEmrgStopErr;  // 远程紧急功能故障
-    uint8_t Emrg_BckCrashSwErr;   // 后触边碰撞故障
-    uint8_t Emrg_FrntCrashSwErr;  // 前触边碰撞故障
-    uint8_t Emrg_LeftCrashSwErr;  // 左触边碰撞故障
-    uint8_t Emrg_RightCrashSwErr; // 右触边碰撞故障
-    uint8_t Emrg_EmrgyCmdOfflErr; // 紧急控制指令报文掉线
-    uint8_t Emrg_BckSlipWarn;     // 溜车警告：0-正常，1-警告
-    uint8_t EmrgStat_RollCnt;     // 循环计数
-    uint8_t Emrg_ErrLevel;        // 紧急系统故障等级
-    uint8_t EmrgStat_CheckSum;    // 校验和
+    uint8_t Emrg_Sw_St;              // 物理急停状态：0-正常，1-触发
+    uint8_t RrCrashTrg_St;           // 后碰撞触发状态：0-正常，1-触发
+    uint8_t FrCrashTrg_St;           // 前碰撞触发状态：0-正常，1-触发
+    uint8_t LeCrashTrg_St;           // 左碰撞触发状态：0-正常，1-触发
+    uint8_t RiCrashTrg_St;           // 右碰撞触发状态：0-正常，1-触发
+    uint8_t Emrg_VehEmrgStopErr;     // 物理急停触发故障
+    uint8_t Emrg_ADLEmrgStopErr;     // 远程紧急功能故障
+    uint8_t Emrg_BckCrashSwErr;      // 后触边碰撞故障
+    uint8_t Emrg_FrntCrashSwErr;     // 前触边碰撞故障
+    uint8_t Emrg_LeftCrashSwErr;     // 左触边碰撞故障
+    uint8_t Emrg_RightCrashSwErr;    // 右触边碰撞故障
+    uint8_t Emrg_EmrgyCmdOfflErr;    // 紧急控制指令报文掉线
+    uint8_t Emrg_BckSlipWarn;        // 溜车警告：0-正常，1-警告
+    uint8_t EmrgStat_RollCnt;        // 循环计数
+    uint8_t Emrg_ErrLevel;           // 紧急系统故障等级
+    uint8_t EmrgStat_CheckSum;       // 校验和
 };
-struct VCU_EmrgStatus revin_451; // 全局实例
+struct VCU_EmrgStatus revin_451;     // 全局实例
 
 // ============================================================================
 // 全局变量实例化
@@ -888,8 +769,8 @@ struct VCU_EmrgStatus revin_451; // 全局实例
 VPARAMS cur_params;
 
 // 地图数据容器
-vector<double> map_latitude_v;  // 地图纬度数据
-vector<double> map_longitude_v; // 地图经度数据
+vector<double> map_latitude_v;           // 地图纬度数据
+vector<double> map_longitude_v;          // 地图经度数据
 
 // 线程同步
 pthread_mutex_t my_mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -904,13 +785,13 @@ pthread_mutex_t my_mutex = PTHREAD_MUTEX_INITIALIZER;
  */
 typedef struct udp_data
 {
-    unsigned long id;         // 数据包ID
-    double end_speed;         // 目标速度 (km/h)
-    double car_latitude;      // 车辆纬度 (度)
-    double car_longitude;     // 车辆经度 (度)
-    double car_heading_angle; // 车辆航向角 (度)
-    double map_latitude[10];  // 地图纬度数组 (度)
-    double map_longitude[10]; // 地图经度数组 (度)
+    unsigned long id;                    // 数据包ID
+    double end_speed;                    // 目标速度 (km/h)
+    double car_latitude;                 // 车辆纬度 (度)
+    double car_longitude;                // 车辆经度 (度)
+    double car_heading_angle;            // 车辆航向角 (度)
+    double map_latitude[10];             // 地图纬度数组 (度)
+    double map_longitude[10];            // 地图经度数组 (度)
 } UDP_DATA;
 
 /**
@@ -919,8 +800,9 @@ typedef struct udp_data
  */
 typedef struct udp_senddata
 {
-    double keep_Angle; // 保持角度 (度)
+    double keep_Angle;                   // 保持角度 (度)
 } UDP_SENDDATA;
+
 
 typedef struct tagPlanRoadToControl
 {
@@ -930,76 +812,6 @@ typedef struct tagPlanRoadToControl
     int status; // ״̬42
 } planRoadToControl;
 vector<planRoadToControl> UDP_map;
-
-// ============================================================================
-// 坐标转换函数
-// ============================================================================
-
-/**
- * @brief 高德坐标系(GCJ-02)转WGS84坐标系
- * @param gcj_lat 高德坐标纬度
- * @param gcj_lon 高德坐标经度
- * @param wgs_lat 转换后的WGS84纬度
- * @param wgs_lon 转换后的WGS84经度
- */
-void GCJ02ToWGS84(double gcj_lat, double gcj_lon, double &wgs_lat, double &wgs_lon)
-{
-    const double PI = 3.14159265358979324;
-    const double a = 6378245.0;               // 长半轴
-    const double ee = 0.00669342162296594323; // 偏心率平方
-
-    // 计算纬度偏差
-    auto transformLat = [&](double x, double y) -> double
-    {
-        double ret = -100.0 + 2.0 * x + 3.0 * y + 0.2 * y * y + 0.1 * x * y + 0.2 * sqrt(abs(x));
-        ret += (20.0 * sin(6.0 * x * PI) + 20.0 * sin(2.0 * x * PI)) * 2.0 / 3.0;
-        ret += (20.0 * sin(y * PI) + 40.0 * sin(y / 3.0 * PI)) * 2.0 / 3.0;
-        ret += (160.0 * sin(y / 12.0 * PI) + 320 * sin(y * PI / 30.0)) * 2.0 / 3.0;
-        return ret;
-    };
-
-    // 计算经度偏差
-    auto transformLon = [&](double x, double y) -> double
-    {
-        double ret = 300.0 + x + 2.0 * y + 0.1 * x * x + 0.1 * x * y + 0.1 * sqrt(abs(x));
-        ret += (20.0 * sin(6.0 * x * PI) + 20.0 * sin(2.0 * x * PI)) * 2.0 / 3.0;
-        ret += (20.0 * sin(x * PI) + 40.0 * sin(x / 3.0 * PI)) * 2.0 / 3.0;
-        ret += (150.0 * sin(x / 12.0 * PI) + 300.0 * sin(x / 30.0 * PI)) * 2.0 / 3.0;
-        return ret;
-    };
-
-    // 判断坐标是否在中国境内
-    auto outOfChina = [](double lat, double lon) -> bool
-    {
-        if (lon < 72.004 || lon > 137.8347)
-            return true;
-        if (lat < 0.8293 || lat > 55.8271)
-            return true;
-        return false;
-    };
-
-    if (outOfChina(gcj_lat, gcj_lon))
-    {
-        wgs_lat = gcj_lat;
-        wgs_lon = gcj_lon;
-        return;
-    }
-
-    double dLat = transformLat(gcj_lon - 105.0, gcj_lat - 35.0);
-    double dLon = transformLon(gcj_lon - 105.0, gcj_lat - 35.0);
-
-    double radLat = gcj_lat / 180.0 * PI;
-    double magic = sin(radLat);
-    magic = 1 - ee * magic * magic;
-
-    double sqrtMagic = sqrt(magic);
-    dLat = (dLat * 180.0) / ((a * (1 - ee)) / (magic * sqrtMagic) * PI);
-    dLon = (dLon * 180.0) / (a / sqrtMagic * cos(radLat) * PI);
-
-    // GCJ-02 to WGS-84
-    wgs_lat = gcj_lat - dLat;
-    wgs_lon = gcj_lon - dLon;
-}
 
 // ============================================================================
 // PID控制器结构体
@@ -1012,15 +824,15 @@ void GCJ02ToWGS84(double gcj_lat, double gcj_lon, double &wgs_lat, double &wgs_l
 struct PIDController
 {
     // PID参数
-    double kp, ki, kd, dt; // 比例、积分、微分系数及采样时间
-
+    double kp, ki, kd, dt;               // 比例、积分、微分系数及采样时间
+    
     // 输出限幅
-    double output_min, output_max; // 输出最小值和最大值
-
+    double output_min, output_max;       // 输出最小值和最大值
+    
     // 状态变量
-    double integral;   // 积分累积值
-    double prev_error; // 上一次误差值
-    bool first_call;   // 首次调用标志
+    double integral;                     // 积分累积值
+    double prev_error;                   // 上一次误差值
+    bool first_call;                     // 首次调用标志
 
     /**
      * @brief 构造函数
@@ -1104,7 +916,10 @@ DECISION_IN decision_control_in; // 决策输入
 CONTROL_OUT control_out;         // 控制输出
 RDC_IN rdc_in;                   // 远程驾驶控制指令消息
 
+
 uint8_t udp_monitor = 0; // udp监控决策计数器
+
+
 
 // 十进制转十六进制函数
 /**
@@ -1154,33 +969,23 @@ std::string decToHex(uint32_t value, int width = 0, bool prefix = true, bool upp
     return ss.str();
 }
 
-// ============================================================================
-// CAN套接字管理函数声明
-// ============================================================================
-bool reinit_can_socket_safe();
-bool validate_can_socket();
-bool prepare_can_socket_for_send();
-bool check_can_socket_health(int sockfd);
-void *can_monitor_thread(void *arg);
 
 // ============================================================================
 // 雷达相关函数声明
 // ============================================================================
-int configureSerialPort2(const std::string &port);
-void sendSerialData(int fd, const std::vector<uint8_t> &data);
+int configureSerialPort2(const std::string& port);
+void sendSerialData(int fd, const std::vector<uint8_t>& data);
 std::vector<uint8_t> receiveSerialData(int fd, size_t length);
-void parseReceivedData(const std::vector<uint8_t> &data);
+void parseReceivedData(const std::vector<uint8_t>& data);
 
 // ============================================================================
 // 雷达相关函数实现
 // ============================================================================
 
 // 配置串口2
-int configureSerialPort2(const std::string &port)
-{
+int configureSerialPort2(const std::string& port) {
     int fd = open(port.c_str(), O_RDWR | O_NOCTTY | O_NONBLOCK);
-    if (fd == -1)
-    {
+    if (fd == -1) {
         perror("Unable to open serial port");
         return -1;
     }
@@ -1193,11 +998,11 @@ int configureSerialPort2(const std::string &port)
     cfsetospeed(&options, B115200);
 
     // 设置数据位、停止位和奇偶校验
-    options.c_cflag &= ~PARENB;        // 无奇偶校验
-    options.c_cflag &= ~CSTOPB;        // 1个停止位
-    options.c_cflag &= ~CSIZE;         // 清除数据位设置
-    options.c_cflag |= CS8;            // 8个数据位
-    options.c_cflag |= CREAD | CLOCAL; // 启用接收器，忽略调制解调器控制线
+    options.c_cflag &= ~PARENB;  // 无奇偶校验
+    options.c_cflag &= ~CSTOPB;  // 1个停止位
+    options.c_cflag &= ~CSIZE;   // 清除数据位设置
+    options.c_cflag |= CS8;      // 8个数据位
+    options.c_cflag |= CREAD | CLOCAL;  // 启用接收器，忽略调制解调器控制线
 
     // 设置为原始模式
     options.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG);
@@ -1205,8 +1010,8 @@ int configureSerialPort2(const std::string &port)
     options.c_oflag &= ~OPOST;
 
     // 设置读取超时
-    options.c_cc[VMIN] = 1;  // 最少读取1个字符
-    options.c_cc[VTIME] = 1; // 超时时间为0.1秒
+    options.c_cc[VMIN] = 1;   // 最少读取1个字符
+    options.c_cc[VTIME] = 1;  // 超时时间为0.1秒
 
     // 应用设置
     tcsetattr(fd, TCSANOW, &options);
@@ -1215,19 +1020,14 @@ int configureSerialPort2(const std::string &port)
 }
 
 // 发送数据
-void sendSerialData(int fd, const std::vector<uint8_t> &data)
-{
-    tcflush(fd, TCIFLUSH); // 清空输入缓冲区
+void sendSerialData(int fd, const std::vector<uint8_t>& data) {
+    tcflush(fd, TCIFLUSH);  // 清空输入缓冲区
     ssize_t bytes_written = write(fd, data.data(), data.size());
-    if (bytes_written == -1)
-    {
+    if (bytes_written == -1) {
         std::cerr << "Error sending data!" << std::endl;
-    }
-    else
-    {
+    } else {
         std::cout << "Sent: ";
-        for (auto byte : data)
-        {
+        for (auto byte : data) {
             std::cout << std::hex << std::setw(2) << std::setfill('0') << (int)byte << " ";
         }
         std::cout << std::dec << std::endl;
@@ -1235,64 +1035,50 @@ void sendSerialData(int fd, const std::vector<uint8_t> &data)
 }
 
 // 接收数据
-std::vector<uint8_t> receiveSerialData(int fd, size_t length)
-{
+std::vector<uint8_t> receiveSerialData(int fd, size_t length) {
     std::vector<uint8_t> buffer;
     buffer.reserve(length);
     size_t totalRead = 0;
-    const int timeoutMs = 100; // 100ms超时
+    const int timeoutMs = 100;  // 100ms超时
     auto start = std::chrono::steady_clock::now();
 
-    while (totalRead < length)
-    {
+    while (totalRead < length) {
         uint8_t chunk[128];
         ssize_t n = read(fd, chunk, sizeof(chunk));
 
-        if (n > 0)
-        {
+        if (n > 0) {
             buffer.insert(buffer.end(), chunk, chunk + n);
             totalRead += n;
-        }
-        else if (n == -1)
-        {
-            if (errno == EAGAIN || errno == EWOULDBLOCK)
-            {
+        } else if (n == -1) {
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
                 // 检查超时
                 auto elapsed = std::chrono::steady_clock::now() - start;
-                if (std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count() > timeoutMs)
-                {
+                if (std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count() > timeoutMs) {
                     std::cerr << "Timeout reading radar data" << std::endl;
                     break;
                 }
-                usleep(10 * 1000); // 等待10ms
+                usleep(10 * 1000);  // 等待10ms
                 continue;
-            }
-            else
-            {
+            } else {
                 perror("read error");
                 break;
             }
-        }
-        else
-        { // EOF
+        } else {  // EOF
             break;
         }
     }
 
-    if (buffer.size() < length)
-    {
+    if (buffer.size() < length) {
         std::cerr << "Incomplete radar data (" << buffer.size() << "/" << length << " bytes)" << std::endl;
     }
     return buffer;
 }
 
 // 解析接收到的数据并更新全局数组
-void parseReceivedData(const std::vector<uint8_t> &data)
-{
-    if (data.size() != 26)
-    {
+void parseReceivedData(const std::vector<uint8_t>& data) {
+    if (data.size() != 26) {
         std::cerr << "Invalid data length!" << std::endl;
-        cout << "Length = " << data.size() << endl;
+        cout << "Length = " << data.size() << endl; 
         return;
     }
 
@@ -1303,30 +1089,24 @@ void parseReceivedData(const std::vector<uint8_t> &data)
     // pthread_mutex_lock(&pthread_mutex);
 
     // 将数据转换为十进制并存储到相应的数组中
-    for (int i = 0; i < NUM_PROBES; ++i)
-    {
+    for (int i = 0; i < NUM_PROBES; ++i) {
         int probeData = (data[i * 2 + 1] << 8) | data[i * 2 + 2];
-        if (address == 0xEA)
-        {
-            radarDataEA[i] = probeData; // 不要用 i-1
-        }
-        else if (address == 0xE8)
-        {
-            radarDataE8[i] = probeData; // 不要用 i-1
+        if (address == 0xEA) {
+            radarDataEA[i] = probeData;  // 不要用 i-1
+        } else if (address == 0xE8) {
+            radarDataE8[i] = probeData;  // 不要用 i-1
         }
     }
 
     // 打印解析后的数据
     std::cout << "EA Radar Data: ";
-    for (int i = 0; i < NUM_PROBES; ++i)
-    {
+    for (int i = 0; i < NUM_PROBES; ++i) {
         std::cout << radarDataEA[i] << " ";
     }
     std::cout << std::endl;
 
     std::cout << "E8 Radar Data: ";
-    for (int i = 0; i < NUM_PROBES; ++i)
-    {
+    for (int i = 0; i < NUM_PROBES; ++i) {
         std::cout << radarDataE8[i] << " ";
     }
     std::cout << std::endl;
@@ -1623,16 +1403,6 @@ bool batch_send_frames(int sockfd, struct can_frame frames[], int frame_count)
                 sockfd, frames, frame_count);
         return false;
     }
-    
-    // 发送前检查套接字状态
-    if (!prepare_can_socket_for_send())
-    {
-        fprintf(stderr, "CAN套接字准备失败，跳过本次发送\n");
-        return false;
-    }
-    
-    // 更新套接字描述符（可能已重新初始化）
-    sockfd = can_sockfd;
 
     // 使用sendmmsg批量发送多个CAN帧
     struct mmsghdr msgs[8];
@@ -1656,53 +1426,13 @@ bool batch_send_frames(int sockfd, struct can_frame frames[], int frame_count)
 
     if (sent < 0)
     {
-        int error_code = errno;
-        can_stats.increment_failed();
-        can_stats.set_last_error(error_code);
-        
-        fprintf(stderr, "sendmmsg失败: %s (错误代码: %d, 套接字: %d, 帧数: %d)\n", 
-               strerror(error_code), error_code, sockfd, frame_count);
-        
-        // 记录连续错误
-        consecutive_can_errors++;
-        last_can_error_time = std::chrono::steady_clock::now();
-        
-        // 根据错误类型进行处理
-        if (error_code == EBADF || error_code == ENOTSOCK || error_code == ENOTCONN)
-        {
-            fprintf(stderr, "检测到套接字错误，标记为无效\n");
-            can_socket_valid = false;
-            
-            // 如果连续错误过多，触发套接字重新初始化
-            if (consecutive_can_errors >= 3)
-            {
-                fprintf(stderr, "连续错误过多(%d次)，尝试重新初始化套接字\n", consecutive_can_errors);
-                if (reinit_can_socket_safe())
-                {
-                    fprintf(stderr, "套接字重新初始化成功，重置错误计数\n");
-                    consecutive_can_errors = 0;
-                }
-            }
-        }
-        else if (error_code == EAGAIN || error_code == EWOULDBLOCK)
-        {
-            fprintf(stderr, "发送缓冲区满，稍后重试\n");
-            usleep(1000); // 等待1ms
-        }
-        
+        perror("sendmmsg失败");
         return false;
     }
-    else
+    else if (sent != frame_count)
     {
-        // 发送成功，重置错误计数
-        consecutive_can_errors = 0;
-        can_stats.increment_sent();
-        
-        if (sent != frame_count)
-        {
-            fprintf(stderr, "批量发送不完整: 已发送%d/%d帧\n", sent, frame_count);
-            return false;
-        }
+        fprintf(stderr, "批量发送不完整: 已发送%d/%d帧\n", sent, frame_count);
+        return false;
     }
 
     return true;
@@ -2138,16 +1868,11 @@ void handle_sigalrm(int sig)
 {
     // std::cout << "SIGALRM: set flag_canSend\n";
     flag_canSend = true;
-    /*
-    */
     // udp监测计数：监控超过1秒如果没收到udb决策指令则停车，实际使用时打开，测试时注释掉 test
-    if (udp_monitor > 50)
-    {
+    if (udp_monitor > 50) {
         begin_run = 0;
         fprintf(stderr, "udp Error\n");
-    }
-    else
-    {
+    } else {
         udp_monitor += 1;
     }
 }
@@ -2651,11 +2376,11 @@ bool parseGPNAV(const std::string &sentence,
         // tokens[3]  偏航角 (heading)
         // tokens[12] 纬度
         // tokens[13] 经度
-        // tokens[21] 工作状态 (52-浮点解, 42-正常)
+        // tokens[23] 工作状态 (1 警告, 2 正常)
         heading = std::stod(tokens[3]);
         latitude = std::stod(tokens[12]);
         longitude = std::stod(tokens[13]);
-        status = std::stoi(tokens[21]);
+        status = std::stoi(tokens[23]);
     }
     catch (...)
     {
@@ -2798,8 +2523,8 @@ double Azimuth_withGeo(double lat1, double lon1, double lat2, double lon2)
     // cout << "geodesic lib:" << azi1 << endl;
     // cout << "c++:" << bearing(lat1, lon1, lat2, lon2) << endl;
     return azi1;
-}
-// 原始计算LD
+} 
+//原始计算LD
 double calc_Lf(double v)
 {
     double k = 2.9, b = 0;
@@ -2812,7 +2537,8 @@ double calc_Lf(double v)
     // Ld = 2.85; //5kph
     // Ld = 5.7; //10kph 15kph
     return Ld;
-}
+} 
+
 
 // 1.计算距离（起点与终点经纬度）
 double Distance_withGeo(double lat1, double lon1, double lat2, double lon2)
@@ -2851,26 +2577,25 @@ int calc_target_index(double lat, double lon, double Ld, vector<double> cx, vect
     }
     return Map_ind;
 }
-// 原有算法
+//原有算法
 double obtainMapData()
 {
     double Ld;
     int ind;
-
+    
     // 检查地图数据是否为空
-    if (map_latitude_v.empty() || map_longitude_v.empty())
-    {
+    if (map_latitude_v.empty() || map_longitude_v.empty()) {
         std::cout << "警告：地图数据为空，无法进行路径规划" << std::endl;
         return 3.5; // 返回默认预瞄距离
     }
-
+    
     // 原版预瞄距离计算
     Ld = calc_Lf(cur_params.vehicle_speed / 3.6);
-
+ 
     // 基于最近点计算预瞄点
     ind = calc_target_index(cur_params.latitude, cur_params.longitude, Ld, map_latitude_v, map_longitude_v, Map_ind);
     std::cout << "计算的预瞄点索引: " << ind << "/" << map_latitude_v.size() << std::endl;
-
+ 
     if (_target_ind >= ind)
     {
         ind = _target_ind;
@@ -2895,7 +2620,7 @@ double obtainMapData()
 
     _target_ind = ind;
     return Ld;
-}
+} 
 
 /**
  * @brief 修改后的obtainMapData函数
@@ -2905,56 +2630,51 @@ double obtainMapData_optimized()
 {
     double Ld;
     int ind;
-
+    
     // 检查地图数据是否为空
-    if (map_latitude_v.empty() || map_longitude_v.empty())
-    {
+    if (map_latitude_v.empty() || map_longitude_v.empty()) {
         std::cout << "警告：地图数据为空，无法进行路径规划" << std::endl;
         return 3.5; // 返回默认预瞄距离
     }
-
-    if (use_optimized_lookahead)
-    {
+    
+    if (use_optimized_lookahead) {
         // 使用优化算法计算预瞄距离
-
+        
         // 准备路径点数据
         std::vector<std::pair<double, double>> path_points;
-        for (size_t i = 0; i < map_latitude_v.size() && i < map_longitude_v.size(); ++i)
-        {
+        for (size_t i = 0; i < map_latitude_v.size() && i < map_longitude_v.size(); ++i) {
             path_points.push_back(std::make_pair(map_latitude_v[i], map_longitude_v[i]));
         }
-
+        
         // 找到当前最近点索引
-        Map_ind = findWayPoint(cur_params.latitude, cur_params.longitude,
-                               map_latitude_v, map_longitude_v);
-
+        Map_ind = findWayPoint(cur_params.latitude, cur_params.longitude, 
+                              map_latitude_v, map_longitude_v);
+        
         // 使用优化算法计算预瞄距离
         Ld = calc_Lf_optimized(
-            cur_params.vehicle_speed, // 车辆速度 (km/h)
-            cur_params.latitude,      // 当前纬度
-            cur_params.longitude,     // 当前经度
-            cur_params.heading_angle, // 当前航向角
-            path_points,              // 路径点集合
-            Map_ind                   // 当前路径点索引
+            cur_params.vehicle_speed,           // 车辆速度 (km/h)
+            cur_params.latitude,                // 当前纬度
+            cur_params.longitude,               // 当前经度
+            cur_params.heading_angle,           // 当前航向角
+            path_points,                        // 路径点集合
+            Map_ind                             // 当前路径点索引
         );
 
+
         std::cout << "使用优化算法计算预瞄距离: " << Ld << "m" << std::endl;
-    }
-    else
-    {
+    } else {
         // 使用原有算法
         Ld = calc_Lf(cur_params.vehicle_speed / 3.6);
         std::cout << "使用原有算法计算预瞄距离: " << Ld << "m" << std::endl;
     }
 
     // 基于最近点计算预瞄点
-    ind = calc_target_index(cur_params.latitude, cur_params.longitude, Ld,
-                            map_latitude_v, map_longitude_v, Map_ind);
+    ind = calc_target_index(cur_params.latitude, cur_params.longitude, Ld, 
+                           map_latitude_v, map_longitude_v, Map_ind);
     std::cout << "计算的预瞄点索引: " << ind << "/" << map_latitude_v.size() << std::endl;
-    if (_target_ind >= ind)
-    {
+    if (_target_ind >= ind) {
         ind = _target_ind;
-    }
+    }       
 
     if (ind < map_latitude_v.size())
     {
@@ -2975,6 +2695,7 @@ double obtainMapData_optimized()
     return Ld;
 }
 
+
 /**
  * @brief 初始化优化器参数的函数
  * @details 在程序启动时调用，设置车辆参数和算法参数
@@ -2982,33 +2703,34 @@ double obtainMapData_optimized()
 void initializeLookaheadOptimizer()
 {
     // 设置车辆硬件参数
-    double wheelbase = 2.0;           // 轴距 (m)
-    double max_steering_angle = 33.0; // 最大转向角 (度)
-
+    double wheelbase = 2.0;              // 轴距 (m)
+    double max_steering_angle = 33.0;    // 最大转向角 (度)
+    
     // 设置算法参数
     // 基础预瞄增益系数:类似原系数K-大会甩出弯/小会切弯
-    // double base_gain = 1.35;            //18 右
+    // double base_gain = 1.35;            //18 右         
     // double base_gain = 1.1596;             //18 左
-    double base_gain = 2.9; // 6
+    double base_gain = 2.9;             //6 
 
-    double min_lookahead = 3;    // 最小预瞄距离 (m)
-    double max_lookahead = 23.0; // 最大预瞄距离 (m)
-
+    double min_lookahead = 2.5;          // 最小预瞄距离 (m)
+    double max_lookahead = 20.0;         // 最大预瞄距离 (m)
+  
+    
     // 优化权重参数
-    double tracking_weight = 2.3;   // 跟踪精度权重
-    double stability_weight = 1.7;  // 稳定性权重
-    double smoothness_weight = 0.7; // 平滑性权重
-
+    double tracking_weight = 2.3;        // 跟踪精度权重
+    double stability_weight = 1.7;       // 稳定性权重
+    double smoothness_weight = 0.7;      // 平滑性权重
+    
     // 初始化优化器 - 传递所有必要参数
-    setLookaheadOptimizerParams(wheelbase, max_steering_angle,
-                                base_gain, min_lookahead, max_lookahead,
-                                tracking_weight, stability_weight, smoothness_weight);
-
+    setLookaheadOptimizerParams(wheelbase, max_steering_angle, 
+                               base_gain, min_lookahead, max_lookahead,
+                               tracking_weight, stability_weight, smoothness_weight);
+    
     std::cout << "预瞄距离优化器初始化完成" << std::endl;
     std::cout << "车辆参数: 轴距=" << wheelbase << "m, 最大转向角=" << max_steering_angle << "度" << std::endl;
-    std::cout << "算法参数: 基础增益=" << base_gain << ", 最小Ld=" << min_lookahead
+    std::cout << "算法参数: 基础增益=" << base_gain << ", 最小Ld=" << min_lookahead 
               << "m, 最大Ld=" << max_lookahead << "m" << std::endl;
-    std::cout << "优化权重: 跟踪精度=" << tracking_weight << ", 稳定性=" << stability_weight
+    std::cout << "优化权重: 跟踪精度=" << tracking_weight << ", 稳定性=" << stability_weight 
               << ", 平滑性=" << smoothness_weight << std::endl;
 }
 
@@ -3021,6 +2743,8 @@ void switchLookaheadAlgorithm(bool use_optimized)
     use_optimized_lookahead = use_optimized;
     std::cout << "切换预瞄距离算法: " << (use_optimized ? "obtainMapData_optimized" : "obtainMapData") << std::endl;
 }
+
+
 
 // vehicle_speed, heading_angle -- 当前速度、航向角
 // lat,lon -- 当前坐标
@@ -3133,8 +2857,7 @@ void *can_receiving_thread(void *arg)
     while (1)
     {
         // 检查thread_mapRecord状态，如果为1则进入空执行模式
-        if (thread_mapRecord == 1)
-        {
+        if (thread_mapRecord == 1) {
             // printf("CAN接收线程进入等待模式...\n");
             usleep(100000); // 100ms
             continue;
@@ -3243,14 +2966,6 @@ void *can_receiving_thread(void *arg)
             // 处理解析的数据
             revin_451 = parseVCU_EmrgStatus(frame451.data);
         }
-        // 从CAN帧中获取车辆信息，用于发送给决策结构体control_out
-        control_out.Soc_HIGH = revin_473.Bat_BatSOC;
-        control_out.Soc_LOW = revin_471.LVBat_Volt;
-        control_out.Emgy_brk_En = revin_451.Emrg_Sw_St;
-        control_out.controlOut_gear = revin_441.Drv_GearAct;
-        control_out.vehicle_speed = revin_4a2.vehicle_speed;
-        control_out.drive_status = revin_411.Brk_WorkMode; // 工作模式
-        cur_params.work_mode = revin_411.Brk_WorkMode;
     }
 
     // 关闭套接字并退出
@@ -3410,24 +3125,18 @@ void process_udp_receive(char *buffer, struct sockaddr_in client_addr)
     // Read map_name (string) - 读取字符串长度然后读取字符串内容
     int map_name_length = *(reinterpret_cast<int *>(ptr));
     ptr += sizeof(int);
-    if (map_name_length > 0 && map_name_length < 256)
-    { // 安全检查
+    if (map_name_length > 0 && map_name_length < 256) { // 安全检查
         decision_control_in.map_name = std::string(ptr, map_name_length);
         ptr += map_name_length;
-    }
-    else
-    {
+    } else {
         decision_control_in.map_name = "";
     }
-
+ 
     // 根据bStart值设置thread_mapRecord
-    if (decision_control_in.bStart == 2)
-    {
+    if (decision_control_in.bStart == 2) {
         thread_mapRecord = 1;
         printf("设置地图记录模式: thread_mapRecord = 1\n");
-    }
-    else if (decision_control_in.bStart == 1 || decision_control_in.bStart == 3)
-    {
+    } else if (decision_control_in.bStart == 1 || decision_control_in.bStart == 3) {
         thread_mapRecord = 0;
         printf("设置正常运行模式: thread_mapRecord = 0\n");
     }
@@ -3460,7 +3169,7 @@ void process_udp_receive(char *buffer, struct sockaddr_in client_addr)
            decision_control_in.ADU_DblFlashLamp, decision_control_in.ADU_LowBeamLamp, decision_control_in.ADU_WidthLamp, decision_control_in.ADU_HighBeamLamp);
     printf("ADU_FogLamp = %d, ADU_BrkLamp = %d\n",
            decision_control_in.ADU_FogLamp, decision_control_in.ADU_BrkLamp);
-    // printf("map_name = %s\n", decision_control_in.map_name.c_str());
+    printf("map_name = %s\n", decision_control_in.map_name.c_str());
     printf("thread_mapRecord = %d\n", thread_mapRecord);
     printf("recvfrom %s at PORT %d\n", clientIpStr, clientPort);
 }
@@ -3485,36 +3194,31 @@ int send_udp_response(int sockfd, struct sockaddr_in client_addr, char *buffer, 
 
     // 将控制输出结构体复制到缓冲区
     memcpy(buffer, &control_out, sizeof(CONTROL_OUT));
+    /*
     // 打印即将发送的数据
     printf("[UDP发送] 准备发送数据到端口8383:\n");
     printf("[UDP发送] 数据大小: %zu bytes\n", sizeof(CONTROL_OUT));
     printf("[UDP发送] 目标地址: %s:%d\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
 
     // 打印控制输出数据的关键字段
-    printf("[UDP发送] 控制数据 - 档位: %d, 车速: %.2f km/h, 低压SOC: %.1f%%, 高压SOC: %.1f%%, 急刹状态: %d, 错误码: %d, 工作模式: %d\n",
+    printf("[UDP发送] 控制数据 - 档位: %d, 车速: %.2f km/h, 低压SOC: %.1f%%, 高压SOC: %.1f%%, 急刹状态: %d, 错误码: %d\n",
            control_out.controlOut_gear, control_out.vehicle_speed, control_out.Soc_LOW,
-           control_out.Soc_HIGH, control_out.Emgy_brk_En, control_out.controlOut_ErrorCode, control_out.drive_status);
-    /*
-     */
+           control_out.Soc_HIGH, control_out.Emgy_brk_En, control_out.controlOut_ErrorCode);
+    */
 
     // 发送数据
     ret = sendto(sockfd, buffer, sizeof(CONTROL_OUT), 0,
                  (struct sockaddr *)&client_addr, sizeof(client_addr));
+    /*
     // 判断发送是否成功并打印结果
-    if (ret > 0)
-    {
+    if (ret > 0) {
         printf("[UDP发送] 成功发送 %d bytes 数据\n", ret);
-    }
-    else if (ret == 0)
-    {
+    } else if (ret == 0) {
         printf("[UDP发送] 警告: 发送了0字节数据\n");
-    }
-    else
-    {
+    } else {
         printf("[UDP发送] 发送失败: %s (错误码: %d)\n", strerror(errno), errno);
     }
-    /*
-     */
+    */
 
     // 返回发送结果
     return ret;
@@ -3589,6 +3293,7 @@ void *udp_thread(void *arg)
     struct sockaddr_in server_addr_insert;
     struct sockaddr_in client_addr_insert;
     char buffer_insert[1024];
+    MapToControl mapData;
 
     // 添加RDC socket相关变量
     int sockfd_rdc;
@@ -3621,11 +3326,11 @@ void *udp_thread(void *arg)
     }
 
     int maxfd = std::max({sockfd, sockfd_insert, sockfd_rdc}) + 2;
-
+    
     // 添加状态跟踪变量
     bool port8000_received = false;
     bool port8002_received = false;
-
+    
     // 定义服务器地址
     bzero(&server_addr, sizeof(server_addr));
     server_addr.sin_family = AF_INET;
@@ -3669,89 +3374,79 @@ void *udp_thread(void *arg)
     while (1)
     {
         // 检查thread_mapRecord状态，如果为1则进入空执行模式
-        if (thread_mapRecord == 1)
-        {
+        if (thread_mapRecord == 1) {
             // printf("UDP线程进入等待模式...\n");
             sleep(1);
             continue;
         }
-
+        
         // 清空接收缓冲区
         memset(buffer, '\0', sizeof(buffer));
         memset(buffer_insert, '\0', sizeof(buffer_insert));
         memset(buffer_rdc, '\0', sizeof(buffer_rdc));
-
+        
         // 状态跟踪变量
         bool port8000_received = false;
         bool port8001_received = false;
         bool port8002_received = false;
-
+        
         printf("等待UDP数据接收...\n");
-
+        
         // 1. 首先等待端口8000（决策指令集）数据
-        while (!port8000_received)
-        {
+        while (!port8000_received) {
             fd_set readfds;
             FD_ZERO(&readfds);
             FD_SET(sockfd, &readfds);
             FD_SET(sockfd_rdc, &readfds); // 同时监听RDC端口，因为RDC可以随时接收
-
+            
             // 设置超时，避免无限阻塞
             struct timeval tv;
-            tv.tv_sec = 1; // 1秒超时
+            tv.tv_sec = 1;  // 1秒超时
             tv.tv_usec = 0;
-
+            
             int activity = select(maxfd, &readfds, nullptr, nullptr, &tv);
-            if (activity < 0)
-            {
+            if (activity < 0) {
                 perror("select error");
                 break;
-            }
-            else if (activity == 0)
-            {
+            } else if (activity == 0) {
                 // 超时，继续等待
                 printf("等待端口8000数据...\n");
                 continue;
             }
-
+            
             // 检查端口8000
-            if (FD_ISSET(sockfd, &readfds))
-            {
+            if (FD_ISSET(sockfd, &readfds)) {
                 printf("Port 8000 socket is ready for reading\n");
                 // 接收数据
                 ret = recvfrom(sockfd, buffer, sizeof(buffer), 0,
                                (struct sockaddr *)&client_addr, &client_len);
-
-                if (ret > 0)
-                {
+                
+                if (ret > 0) {
                     port8000_received = true;
                     printf("Port 8000 data received successfully, size: %d bytes\n", ret);
-
+                    
                     // 处理接收到的数据
                     process_udp_receive(buffer, client_addr);
+                    
                     // 发送响应数据
                     ret = send_udp_response(sockfd, client_addr, buffer, sizeof(buffer));
-
+                    
                     printf("端口8000数据接收成功，等待端口8001数据...\n");
-                }
-                else
-                {
+                } else {
                     // 接收失败处理
                     perror("UDP port 8000 receive failed");
                 }
             }
-
+            
             // 检查端口8002 (RDC数据)
-            if (FD_ISSET(sockfd_rdc, &readfds))
-            {
+            if (FD_ISSET(sockfd_rdc, &readfds)) {
                 printf("Port 8002 socket is ready for reading\n");
                 ret = recvfrom(sockfd_rdc, buffer_rdc, sizeof(buffer_rdc), 0,
                                (struct sockaddr *)&client_addr_rdc, &client_len_rdc);
-                if (ret > 0)
-                {
+                if (ret > 0) {
                     port8002_received = true;
                     printf("Received RDC data from port 8002, size: %d bytes\n", ret);
-
+                    
                     // 更新RDC数据接收时间戳
                     {
                         std::lock_guard<std::mutex> lock(control_state_mutex);
@@ -3759,186 +3454,126 @@ void *udp_thread(void *arg)
                         rdc_ever_received = true;
                         printf("Updated RDC timestamp\n");
                     }
-
+                    
                     // 解析RDC数据
-                    if (parseRDCData(buffer_rdc, ret))
-                    {
+                    if (parseRDCData(buffer_rdc, ret)) {
                         printf("Port 8002 RDC data parsed successfully\n");
-                    }
-                    else
-                    {
+                    } else {
                         printf("Failed to parse RDC data from port 8002\n");
                     }
-                }
-                else
-                {
+                } else {
                     // 接收失败处理
                     perror("UDP RDC receive failed");
                 }
             }
         }
-
+        
         // 2. 接收到端口8000数据后，等待端口8001（地图数据），同时允许8000端口数据更新
-        while (!port8001_received)
-        {
+        while (!port8001_received) {
             fd_set readfds;
             FD_ZERO(&readfds);
-            FD_SET(sockfd, &readfds);        // 监听8000端口，允许更新
+            FD_SET(sockfd, &readfds);       // 监听8000端口，允许更新
             FD_SET(sockfd_insert, &readfds); // 监听8001端口
             FD_SET(sockfd_rdc, &readfds);    // 监听8002端口
-
+            
             // 设置超时，避免无限阻塞
             struct timeval tv;
-            tv.tv_sec = 1; // 1秒超时
+            tv.tv_sec = 1;  // 1秒超时
             tv.tv_usec = 0;
-
+            
             int activity = select(maxfd, &readfds, nullptr, nullptr, &tv);
-            if (activity < 0)
-            {
+            if (activity < 0) {
                 perror("select error");
                 break;
-            }
-            else if (activity == 0)
-            {
+            } else if (activity == 0) {
                 // 超时，继续等待
                 printf("等待端口8001数据...\n");
                 continue;
             }
-
+            
             // 检查端口8000，允许更新决策指令集数据
-            if (FD_ISSET(sockfd, &readfds))
-            {
+            if (FD_ISSET(sockfd, &readfds)) {
                 printf("Port 8000 socket is ready for reading (update)\n");
                 // 接收数据
                 ret = recvfrom(sockfd, buffer, sizeof(buffer), 0,
                                (struct sockaddr *)&client_addr, &client_len);
-
-                if (ret > 0)
-                {
+                
+                if (ret > 0) {
                     printf("Port 8000 data updated successfully, size: %d bytes\n", ret);
-
+                    
                     // 处理接收到的数据
                     process_udp_receive(buffer, client_addr);
-
+                    
                     // 发送响应数据
                     ret = send_udp_response(sockfd, client_addr, buffer, sizeof(buffer));
-
+                    
                     printf("端口8000数据更新成功，继续等待端口8001数据...\n");
-                }
-                else
-                {
+                } else {
                     // 接收失败处理
                     perror("UDP port 8000 update failed");
                 }
             }
-
+            
             // 检查端口8001
-            if (FD_ISSET(sockfd_insert, &readfds))
-            {
+            if (FD_ISSET(sockfd_insert, &readfds)) {
                 printf("Port 8001 socket is ready for reading\n");
                 ret = recvfrom(sockfd_insert, buffer_insert, sizeof(buffer_insert), 0,
                                (struct sockaddr *)&client_addr_insert, &client_len_insert);
-                if (ret > 0)
-                {
-                    long static version_last = 404;
+                if (ret > 0) {
                     port8001_received = true;
                     printf("Port 8001 data received successfully, size: %d bytes\n", ret);
-                    // printf("--------------------------------\n");
-
-                    // cout << "buffer_insert size =" << sizeof(buffer_insert) << ",sizeof(MapToControl)=" << sizeof(MapToControl) << endl;
+                    printf("--------------------------------\n");
+                    
+                    cout << "buffer_insert size =" << sizeof(buffer_insert) << ",sizeof(MapToControl)=" << sizeof(MapToControl) << endl;
                     memcpy(&mapData, buffer_insert, sizeof(MapToControl));
+                    
                     // 打印接收到的数据
-                    // printf("接收到的地图数据:\n");
-                    // printf("版本号/时间戳: %ld\n", mapData.version);
-                    // printf("帧总数: %d\n", mapData.frameNum);
-                    // printf("当前帧号: %d\n", mapData.frameId);
-                    // printf("本帧有效数据数量: %d\n", mapData.validNumInFrame);
-                    // printf("路径点数据:\n");
-                    for (int i = 0; i < mapData.validNumInFrame; i++)
-                    {
+                    printf("接收到的地图数据:\n");
+                    printf("版本号/时间戳: %ld\n", mapData.version);
+                    printf("帧总数: %d\n", mapData.frameNum);
+                    printf("当前帧号: %d\n", mapData.frameId);
+                    printf("本帧有效数据数量: %d\n", mapData.validNumInFrame);
+                    printf("路径点数据:\n");
+                    for (int i = 0; i < mapData.validNumInFrame; i++) {
                         printf("点[%d]: x=%.6f, y=%.6f\n", i, mapData.info[i].x, mapData.info[i].y);
                     }
-                    // printf("--------------------------------\n");
-                    if (version_last != mapData.version)
-                    {
-                        // 准备调用insertTargetPoints函数的参数
-                        std::vector<CPosition> points;
-
-                        // 高德坐标系(GCJ02)转WGS84坐标系
-                        for (int i = 0; i < mapData.validNumInFrame; i++)
-                        {
-                            // 获取原始高德坐标
-                            double gcj_lat = mapData.info[i].x;
-                            double gcj_lon = mapData.info[i].y;
-
-                            // 转换为WGS84坐标
-                            double wgs_lat, wgs_lon;
-                            GCJ02ToWGS84(gcj_lat, gcj_lon, wgs_lat, wgs_lon);
-
-                            // 使用转换后的WGS84坐标
-                            CPosition wgs_point(wgs_lat, wgs_lon);
-                            points.push_back(wgs_point);
-
-                            // printf("坐标转换: 高德(%.8f, %.8f) -> WGS84(%.8f, %.8f)\n",
-                            //        gcj_lat, gcj_lon, wgs_lat, wgs_lon);
-                        }
-
-                        // 清空之前的数据
-                        map_latitude_v.clear();
-                        map_longitude_v.clear();
-
-                        UDP_map = insertTargetPoints(points);
-
-                        // 将数据存入map_latitude_v和map_longitude_v
-                        for (const auto &road : UDP_map)
-                        {
-                            if (road.latitude != 0 && road.longitude != 0)
-                            {
-                                map_latitude_v.push_back(road.latitude);
-                                map_longitude_v.push_back(road.longitude);
-                            }
-                        }
-
-                        version_last = mapData.version;
-                        /*
-                        // 打印所有路径点的经纬度
-                        std::cout << "map_latitude_v: ";
-                        for(const auto& lat : map_latitude_v) {
-                            std::cout << lat << ", ";
-                        }
-                        std::cout << std::endl;
-                        std::cout << "map_longitude_v: ";
-                        for(const auto& lon : map_longitude_v) {
-                            std::cout << lon << ", ";
-                        }
-                        std::cout << std::endl;
-                        */
-                        cout << "Successfully read " << map_latitude_v.size() << " GIS_map points." << endl;
-                        printf("端口8001数据接收成功，地图数据已处理\n");
+                    printf("--------------------------------\n");
+                    
+                    // 准备调用insertTargetPoints函数的参数
+                    std::vector<CPosition> points;
+                    for (int i = 0; i < mapData.validNumInFrame; i++) {
+                        points.push_back(mapData.info[i]);
                     }
-                    else
-                    {
-                        printf("端口8001数据未更新，不处理\n");
+                    
+                    // 清空之前的数据
+                    map_latitude_v.clear();
+                    map_longitude_v.clear();
+                    
+                    UDP_map = insertTargetPoints(points);
+                    
+                    // 将数据存入map_latitude_v和map_longitude_v
+                    for (const auto &road : UDP_map) {
+                        map_latitude_v.push_back(road.latitude);
+                        map_longitude_v.push_back(road.longitude);
                     }
-                }
-                else
-                {
+                    
+                    cout << "Successfully read " << map_latitude_v.size() << " GIS_map points." << endl;
+                    printf("端口8001数据接收成功，地图数据已处理\n");
+                } else {
                     // 接收失败处理
                     perror("UDP port 8001 receive failed");
                 }
             }
-
+            
             // 检查端口8002 (RDC数据)
-            if (FD_ISSET(sockfd_rdc, &readfds))
-            {
+            if (FD_ISSET(sockfd_rdc, &readfds)) {
                 printf("Port 8002 socket is ready for reading\n");
                 ret = recvfrom(sockfd_rdc, buffer_rdc, sizeof(buffer_rdc), 0,
                                (struct sockaddr *)&client_addr_rdc, &client_len_rdc);
-                if (ret > 0)
-                {
+                if (ret > 0) {
                     port8002_received = true;
                     printf("Received RDC data from port 8002, size: %d bytes\n", ret);
-
+                    
                     // 更新RDC数据接收时间戳
                     {
                         std::lock_guard<std::mutex> lock(control_state_mutex);
@@ -3946,70 +3581,54 @@ void *udp_thread(void *arg)
                         rdc_ever_received = true;
                         printf("Updated RDC timestamp\n");
                     }
-
+                    
                     // 解析RDC数据
-                    if (parseRDCData(buffer_rdc, ret))
-                    {
+                    if (parseRDCData(buffer_rdc, ret)) {
                         printf("Port 8002 RDC data parsed successfully\n");
-                    }
-                    else
-                    {
+                    } else {
                         printf("Failed to parse RDC data from port 8002\n");
                     }
-                }
-                else
-                {
+                } else {
                     // 接收失败处理
                     perror("UDP RDC receive failed");
                 }
             }
         }
-
+        
         // 3. 当端口8000和8001都接收到数据后，设置begin_run标志，允许主线程继续执行
         // 主线程会检查GPS数据是否正常，然后才会真正启动程序
-        if (port8000_received && port8001_received)
-        {
+        if (port8000_received && port8001_received) {
             begin_run = 1;
             printf("端口8000和8001数据均已接收，设置begin_run=1，等待主线程检查GPS数据...\n");
         }
-
+        
         // 4. 智能ControlState管理逻辑
         {
             std::lock_guard<std::mutex> lock(control_state_mutex);
             auto current_time = std::chrono::steady_clock::now();
-
-            if (port8002_received)
-            {
+            
+            if (port8002_received) {
                 // 接收到RDC数据，立即切换到远程控制模式
                 ControlState = 2;
                 printf("Port 8002 RDC data received, ControlState set to 2 (Remote Control)\n");
-            }
-            else if (rdc_ever_received)
-            {
+            } else if (rdc_ever_received) {
                 // 检查RDC数据超时
                 auto time_since_last_rdc = std::chrono::duration_cast<std::chrono::milliseconds>(current_time - last_rdc_time).count();
-
-                if (time_since_last_rdc > RDC_TIMEOUT_MS)
-                {
+                
+                if (time_since_last_rdc > RDC_TIMEOUT_MS) {
                     // RDC数据超时，切换到自动驾驶模式
-                    if (ControlState == 2)
-                    {
+                    if (ControlState == 2) {
                         ControlState = 1;
                         printf("RDC timeout (%ld ms), switching ControlState to 1 (Auto Control)\n", time_since_last_rdc);
                     }
-                }
-                else
-                {
+                } else {
                     // RDC数据未超时，保持远程控制模式
-                    if (ControlState != 2)
-                    {
+                    if (ControlState != 2) {
                         ControlState = 2;
                         printf("RDC data still valid (%ld ms ago), maintaining ControlState 2 (Remote Control)\n", time_since_last_rdc);
                     }
                 }
-            }
-            else if (port8000_received)
-            {
+            } else if (port8000_received) {
                 // 只接收到自动驾驶数据，且从未接收过RDC数据
                 ControlState = 1;
                 printf("Port 8000 data received, ControlState set to 1 (Auto Control)\n");
@@ -4357,41 +3976,25 @@ int Map_ind：预瞄点地图下标
 */
 void send_candata(double steer_angle, CONTROL_OUT &c_out, DECISION_IN &din, VCU_VehDynStatus revin_4a2, VCU_DriveStatus revin_441, int &canFrameCount)
 {
-    // 清除eightFrames
-    eightFrames.clear();
     // 当前步骤计数
     static int currentStep = 0;
+
     // Step Emy: 急停控制帧 判断是否需要急停
-    if (din.Emgy_brk_En == 1) // 急停
+    if (din.Emgy_brk_En == 1 || begin_run == 0) // 急停
     {
-        std::cout << "Step Emy: 急停" << std::endl;
+        std::cout << "Step Emy: 急停" << ",begin_run=" << begin_run << std::endl;
         // 创建紧急控制报文
-        createEightCanFrames(eightFrames, 10, 100, 0, 0, 200, 0, 5, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1);
+        createEightCanFrames(eightFrames, 10, 100, 0, 0, 200, 0, 5, 1, 0, 0, 0, 0, 0, 1);
         canFrameCount = -1;
         currentStep = -1;
-        c_out.Emgy_brk_En = 1; // 急停置为1
     }
     else if (din.Emgy_brk_ReqRmv == 1) // 移除急停
     {
         std::cout << "Step Emy——Rmv: 移除急停" << std::endl;
         // 移除急停请求
-        createEightCanFrames(eightFrames, 10, 100, 0, 0, 200, 0, 5, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        createEightCanFrames(eightFrames, 10, 100, 0, 0, 200, 0, 5, 0, 1, 1, 1, 1, 1);
         canFrameCount = 0;
         currentStep = 0;
-        c_out.Emgy_brk_En = 0; // 急停置为0
-    }
-    else if (begin_run == 0) // udp中断停车等待
-    {
-        cout << "UDP 中断：begin_run=" << begin_run << std::endl;
-        createEightCanFrames(eightFrames, 10, 100, 0, 0, 200, 0, 5);
-        canFrameCount = -2;
-        currentStep = -2;
-    }
-    else if (begin_run == 1 && currentStep == -2 && canFrameCount == -2) // udp重启后重新初始化
-    {
-        canFrameCount = 0;
-        currentStep = 0;
-        cout << "UDP 重启：canFrameCount=" << canFrameCount << ",currentStep=" << currentStep << std::endl;
     }
     // Step 0: 初始化握手
     if (canFrameCount >= 0 && canFrameCount < 30 && begin_run == 1)
@@ -4434,19 +4037,17 @@ void send_candata(double steer_angle, CONTROL_OUT &c_out, DECISION_IN &din, VCU_
         static bool flag = false;           // 加速false，减速true
         static int gear_count = 0;          // 档位计数器
         static float tmp_din_brake_bar = 0; // 指令刹车压力
-
+  
         /* 指令策略判断 */
-        /*
         // 1. 刹车以及油门冲突
-        if ((din.brake_bar != 0) && (din.endSpeed != 0)) // 同时按下刹车和油门指令冲突报错
+        if (din.endSpeed != 0 && din.brake_bar != 0) // 同时按下刹车和油门指令冲突报错
         {
             cout << "刹车和油门指令冲突，无法下发" << endl;
             c_out.controlOut_ErrorCode = 1;
             return;
         }
-        */
         // 2. 驻车档以及车速冲突
-        if ((din.gear == 1) && (c_out.vehicle_speed != 0)) // 驻车档以及车速冲突，无法下发
+        if (din.gear == 1 && c_out.vehicle_speed != 0) // 同时按下刹车和油门指令冲突报错
         {
             cout << "驻车档以及车速冲突，无法下发" << endl;
             c_out.controlOut_ErrorCode = 2;
@@ -4488,8 +4089,7 @@ void send_candata(double steer_angle, CONTROL_OUT &c_out, DECISION_IN &din, VCU_
             flag = true;
             std::cout << "目标速度小于当前速度，进入减速模式" << std::endl;
         }
-        else
-        {
+        else{
             std::cout << "目标速度等于当前速度，保持不变" << std::endl;
         }
         // 加速过程
@@ -4772,7 +4372,7 @@ void send_candata(RDC_IN rdc_in, CONTROL_OUT &c_out, VCU_VehDynStatus revin_4a2,
 }
 
 // 初始化日志文件
-void initLogFile(MapToControl mapData)
+void initLogFile()
 {
     // 获取当前时间戳，生成文件名
     std::string timestamp = getCurrentTimestamp();
@@ -4794,30 +4394,25 @@ void initLogFile(MapToControl mapData)
 
     // 写入表头
     logFile << "时间戳, 纬度, 经度, 航向角, 当前车速 , 方向盘角度, 地图纬度, 地图经度, 启动标签, 刹车压力, 刹车距离, EPB电子驻车, 档位, 目标末速度, 急刹使能, 急刹移除请求, 前触边移除请求, 后触边移除请求, 左触边移除请求, 右触边移除请求, 喇叭, 倒车灯, 右转灯, 左转灯, 双闪, 近光灯, 示廓灯, 远光灯, 雾灯, 刹车灯, 预瞄距离,横向误差, alpha";
-
-    /*
+    
     // 添加EA雷达数据表头
     for (int i = 0; i < NUM_PROBES; i++)
     {
         logFile << ", EA雷达" << i + 1;
     }
+    
     // 添加E8雷达数据表头
     for (int i = 0; i < NUM_PROBES; i++)
     {
         logFile << ", E8雷达" << i + 1;
     }
-    */
 
     // 为CAN帧数据添加表头
     for (int i = 0; i < 8; i++)
     {
         logFile << ", CAN帧" << i + 1 << "_ID, CAN帧" << i + 1 << "_数据";
     }
-    logFile << ", 地图版本号, 地图有效点数量, 地图帧ID";
-    for (size_t i = 0; i < mapData.validNumInFrame; i++)
-    {
-        logFile << ", 点[" << i << "]纬度X" << ", 点[" << i << "]经度Y" << i + 1;
-    }
+
     // 表头结束，换行
     logFile << std::endl;
 
@@ -4827,16 +4422,15 @@ void initLogFile(MapToControl mapData)
 }
 
 // 保存日志到文件
-void logToFile(DECISION_IN decision_control_in, VPARAMS cur_params, MapToControl mapData, GIS GIS_map, double Ld, double alpha, std::vector<can_frame> can_frame_log, double Puresuit_lateral_error)
+void logToFile(DECISION_IN decision_control_in, VPARAMS cur_params, GIS GIS_map, double Ld, double alpha, std::vector<can_frame> can_frame_log,double Puresuit_lateral_error)
 {
-    static long map_record_Last = 0; // 初始化版本号
     // 获取当前时间戳
     std::string timestamp = getCurrentTimestamp();
 
     // 如果日志文件未打开或者记录数已达到上限，初始化新文件
     if (!logFile.is_open() || recordCounter >= MAX_LOG_ENTRIES)
     {
-        initLogFile(mapData);
+        initLogFile();
     }
 
     // 写入日志内容
@@ -4878,29 +4472,28 @@ void logToFile(DECISION_IN decision_control_in, VPARAMS cur_params, MapToControl
             << decision_control_in.ADU_HighBeamLamp << ", "
             << decision_control_in.ADU_FogLamp << ", "
             << decision_control_in.ADU_BrkLamp << ", "
-            /**** 控制循迹 ****/
+            /**** 控制循迹 */
             << Ld << ", "
             << Puresuit_lateral_error << ", "
             << alpha;
-
-    /*
+            
     // 记录EA雷达数据
     for (int i = 0; i < NUM_PROBES; i++)
     {
         logFile << std::dec << ", " << radarDataEA[i];
     }
-
+    
     // 记录E8雷达数据
     for (int i = 0; i < NUM_PROBES; i++)
     {
         logFile << std::dec << ", " << radarDataE8[i];
     }
-    */
 
     // 记录所有CAN帧
     for (size_t i = 0; i < can_frame_log.size(); i++)
     {
         logFile << ", " << can_frame_log[i].can_id << ", ";
+
         // 记录当前CAN帧的8字节数据
         for (int j = 0; j < 8; ++j)
         {
@@ -4909,17 +4502,7 @@ void logToFile(DECISION_IN decision_control_in, VPARAMS cur_params, MapToControl
                 logFile << " ";
         }
     }
-    if (map_record_Last != mapData.version)
-    {
-        /**** 传输地图 ****/
-        logFile << mapData.version << ", "
-                << mapData.validNumInFrame
-                << mapData.frameId;
-        for (size_t i = 0; i < mapData.validNumInFrame; i++)
-        {
-            logFile << std::dec << std::fixed << std::setprecision(8) << ", " << mapData.info[i].x << ", " << mapData.info[i].y;
-        }
-    }
+
     // 换行
     logFile << std::endl;
     // 增加记录计数
@@ -4929,120 +4512,99 @@ void logToFile(DECISION_IN decision_control_in, VPARAMS cur_params, MapToControl
     {
         logFile.flush();
     }
-    map_record_Last = mapData.version;
 }
 
 /*地图记录线程函数*/
 void *map_recorder_thread(void *arg)
 {
     printf("地图记录线程已启动\n");
-
+    
     pid_t child_pid = -1;
     bool process_running = false;
-
+    
     while (1)
     {
         // 检查thread_mapRecord状态
-        if (thread_mapRecord == 1)
-        {
+        if (thread_mapRecord == 1) {
             // 如果进程还没有启动，启动3000P程序
-            if (!process_running)
-            {
+            if (!process_running) {
                 std::string filename;
-
+                
                 // 使用map_name创建文件名，如果map_name为空则使用默认名称
-                if (!decision_control_in.map_name.empty())
-                {
+                if (!decision_control_in.map_name.empty()) {
                     filename = decision_control_in.map_name;
-                }
-                else
-                {
+                } else {
                     // 使用时间戳作为默认文件名
                     time_t now = time(0);
                     struct tm *ltm = localtime(&now);
                     char timestamp[32];
                     sprintf(timestamp, "gps_path%04d%02d%02d%02d%02d%02d.txt",
-                            1900 + ltm->tm_year, 1 + ltm->tm_mon, ltm->tm_mday,
-                            ltm->tm_hour, ltm->tm_min, ltm->tm_sec);
+                           1900 + ltm->tm_year, 1 + ltm->tm_mon, ltm->tm_mday,
+                           ltm->tm_hour, ltm->tm_min, ltm->tm_sec);
                     filename = std::string(timestamp);
                 }
-
+                
                 printf("启动3000P程序，文件名: %s\n", filename.c_str());
-
+                
                 // 创建子进程
                 child_pid = fork();
-                if (child_pid == 0)
-                {
+                if (child_pid == 0) {
                     // 子进程：执行3000P程序
-                    int cd_res = chdir("/home/ztl");
-                    if (cd_res != 0)
-                    {
-                        std::cerr << "Error changing directory to /home/ztl: " << strerror(errno) << std::endl;
-                    }
-                    execl("./3000P_dynmaic", "3000P_dynmaic", filename.c_str(), (char *)NULL);
+                    chdir("/home/ztl");
+                    execl("./3000P_dynmaic", "3000P_dynmaic", filename.c_str(), (char*)NULL);
                     // 如果execl失败
                     printf("启动3000P程序失败\n");
                     exit(1);
-                }
-                else if (child_pid > 0)
-                {
+                } else if (child_pid > 0) {
                     // 父进程：记录进程状态
                     process_running = true;
                     printf("3000P_dynmaic程序已启动，PID: %d\n", child_pid);
-                }
-                else
-                {
+                } else {
                     // fork失败
                     printf("创建子进程失败\n");
                 }
             }
-
+            
             // 检查子进程是否还在运行
-            if (process_running && child_pid > 0)
-            {
+            if (process_running && child_pid > 0) {
                 int status;
                 pid_t result = waitpid(child_pid, &status, WNOHANG);
-                if (result == child_pid)
-                {
+                if (result == child_pid) {
                     // 子进程已结束
                     printf("3000P程序已结束\n");
                     process_running = false;
                     child_pid = -1;
                 }
             }
-
+            
             // 每秒检查一次
             sleep(1);
-        }
-        else
-        {
+        } else {
             // 如果thread_mapRecord不为1，终止3000P进程
-            if (process_running && child_pid > 0)
-            {
+            if (process_running && child_pid > 0) {
                 printf("停止3000P程序\n");
                 kill(child_pid, SIGTERM);
-
+                
                 // 等待子进程结束
                 int status;
                 waitpid(child_pid, &status, 0);
-
+                
                 printf("3000P程序已停止\n");
                 process_running = false;
                 child_pid = -1;
             }
-
+            
             // 等待模式，每秒检查一次
             sleep(1);
         }
     }
-
+    
     // 清理资源
-    if (process_running && child_pid > 0)
-    {
+    if (process_running && child_pid > 0) {
         kill(child_pid, SIGTERM);
         waitpid(child_pid, NULL, 0);
     }
-
+    
     return NULL;
 }
 
@@ -5055,8 +4617,7 @@ void *map_recorder_thread(void *arg)
 void processRadarDecision(int serialFd2)
 {
     // 检查雷达功能是否启用
-    if (!radar_params.enable_radar)
-    {
+    if (!radar_params.enable_radar) {
         // 雷达功能关闭时，清除所有停车标志
         radar_params.should_stop_EA = false;
         radar_params.should_stop_E8 = false;
@@ -5068,26 +4629,23 @@ void processRadarDecision(int serialFd2)
     }
 
     printf("雷达功能已开启，执行雷达决策\n");
-
+    
     /****************************
      * 雷达数据采集部分
      ****************************/
     //  发送固定数据（不计算校验和）
     std::vector<uint8_t> sendData1 = {0xEA, 0x2C, 0x01, 0xC7}; // 12个探头的数据
-    sendSerialData(serialFd2, sendData1);
+    sendSerialData(serialFd2, sendData1); 
 
     // 接收雷达数据
     std::vector<uint8_t> receivedData_EA = receiveSerialData(serialFd2, 26); // 接收26字节数据
-    if (receivedData_EA.size() == 26)
-    {
+    if (receivedData_EA.size() == 26) {
         parseReceivedData(receivedData_EA);
-    }
-    else
-    {
+    } else {
         std::cerr << "Failed to read EA radar data" << std::endl;
-        memset(radarDataEA, 0, sizeof(radarDataEA)); // 清空数据防止误判
+        memset(radarDataEA, 0, sizeof(radarDataEA));  // 清空数据防止误判
     }
-
+    
     // 休眠60毫秒
     usleep(60000);
 
@@ -5096,15 +4654,12 @@ void processRadarDecision(int serialFd2)
 
     // 接收雷达数据
     std::vector<uint8_t> receivedData_E8 = receiveSerialData(serialFd2, 26); // 接收26字节数据
-    if (receivedData_E8.size() == 26)
-    {
+    if (receivedData_E8.size() == 26) {
         parseReceivedData(receivedData_E8);
-    }
-    else
-    {
+    } else {
         std::cerr << "Failed to read E8 radar data" << std::endl;
-        memset(radarDataE8, 0, sizeof(radarDataE8)); // 清空数据防止误判
-    }
+        memset(radarDataE8, 0, sizeof(radarDataE8));  // 清空数据防止误判
+    } 
 
     /****************************
      * 雷达决策逻辑部分
@@ -5149,21 +4704,20 @@ void processRadarDecision(int serialFd2)
         }
     }
     radar_params.should_stop_E8 = all_e8_below_safe;
-
+    
     // 检查两个标识是否有一个为true
-    if (radar_params.should_stop_EA || radar_params.should_stop_E8)
-    {
-        radar_params.should_stop = true; // 至少有一个为true，触发停车
+    if (radar_params.should_stop_EA || radar_params.should_stop_E8){
+        radar_params.should_stop = true;  // 至少有一个为true，触发停车
     }
     else
     {
-        radar_params.should_stop = false; // 两个都为false，不触发停车
+        radar_params.should_stop = false;  // 两个都为false，不触发停车
     }
 
     // 打印雷达决策状态
-    printf("雷达决策状态: EA停车=%s, E8停车=%s, 总停车=%s\n",
+    printf("雷达决策状态: EA停车=%s, E8停车=%s, 总停车=%s\n", 
            radar_params.should_stop_EA ? "是" : "否",
-           radar_params.should_stop_E8 ? "是" : "否",
+           radar_params.should_stop_E8 ? "是" : "否", 
            radar_params.should_stop ? "是" : "否");
 }
 
@@ -5173,16 +4727,15 @@ void *main_thread(void *arg)
      * 第一部分：初始化
      ****************************/
     printf("\nMain_Thread [%lu] is running\n", pthread_self());
-
+    
     // 等待UDP接收完成（begin_run被设置为1）
     printf("主线程等待UDP数据接收完成 (begin_run = %d)...\n", begin_run);
-    while (begin_run == 0)
-    {
+    while (begin_run == 0) {
         // 短暂休眠，避免CPU占用过高
         usleep(100000); // 100ms
     }
     printf("UDP数据接收完成，主线程继续执行...\n");
-
+    
     // 初始化优化预瞄距离计算器
     initializeLookaheadOptimizer();
 
@@ -5215,13 +4768,15 @@ void *main_thread(void *arg)
         std::cout << "GPS功能已禁用，将使用模拟数据进行调试" << std::endl;
     }
     // 初始化雷达串口设备路径
-    int serialFd2 = configureSerialPort2(RADAR_SERIAL_PORT);
-    if (serialFd2 == -1)
-    {
+    int serialFd2 = configureSerialPort2(RADAR_SERIAL_PORT);  
+    if (serialFd2 == -1) {
         std::cerr << "Serial port configuration failed!" << std::endl;
         return NULL;
     }
     std::cout << "Radar thread: Serial port configured successfully. Listening for data..." << std::endl;
+
+
+
 
     cout_can = 0; // CAN初始化计数器
 
@@ -5234,11 +4789,17 @@ void *main_thread(void *arg)
     while (1)
     {
         /****************************
-         * 第二部分：数据获取
+         * 第二部分：GPS数据获取
          ****************************/
-
         // 从CAN帧中获取车速，用于发送给决策结构体control_out
-        cur_params.vehicle_speed = revin_4a2.vehicle_speed;
+        control_out.vehicle_speed = revin_4a2.vehicle_speed;
+        // 从CAN帧中获取SOC，用于发送给决策结构体control_out
+        control_out.Soc_HIGH = revin_473.Bat_BatSOC;
+        control_out.Soc_LOW = revin_471.LVBat_Volt;
+        control_out.Emgy_brk_En = revin_451.Emrg_Sw_St;
+
+        // 车速获取，用于更新车辆状态结构体cur_params
+        cur_params.vehicle_speed = control_out.vehicle_speed;
 
         std::vector<double> real_gps;
 
@@ -5250,7 +4811,7 @@ void *main_thread(void *arg)
         static bool gps_initialized = false;
         static int gps_retry_count = 0;
         const int MAX_GPS_RETRY = 10; // 最大重试次数
-
+        
         if (enable_gps)
         {
             // 每次读取前记录时间，确保处理间隔合理（GPS数据通常是10Hz，即100ms一次）
@@ -5268,15 +4829,13 @@ void *main_thread(void *arg)
                     std::cerr << "无GPS数据或解析错误：No valid data received. 空数据率: "
                               << (double)emptyDataCount / totalDataCount * 100 << "%" << std::endl;
                     // 如果无法获取GPS数据，可以使用上一次的有效数据或默认值
-
+                    
                     // 如果GPS尚未初始化，增加重试计数
-                    if (!gps_initialized)
-                    {
+                    if (!gps_initialized) {
                         gps_retry_count++;
                         printf("GPS数据初始化重试 %d/%d...\n", gps_retry_count, MAX_GPS_RETRY);
-
-                        if (gps_retry_count >= MAX_GPS_RETRY)
-                        {
+                        
+                        if (gps_retry_count >= MAX_GPS_RETRY) {
                             printf("警告：GPS数据初始化失败，将使用模拟数据继续执行\n");
                             gps_initialized = true; // 强制继续执行
                         }
@@ -5292,23 +4851,21 @@ void *main_thread(void *arg)
                     printf("\n当前GPS三元组信息：latitude = %f, longitude = %f, heading_angle = %f，",
                            cur_params.latitude, cur_params.longitude, cur_params.heading_angle);
                     printf("当前车速：vehicle_speed = %f\n", cur_params.vehicle_speed);
-
+                    
                     // 检查GPS数据是否有效
-                    bool gps_valid = (cur_params.latitude >= 1.0 && cur_params.latitude <= 50.0 &&
-                                      cur_params.longitude >= 1.0 && cur_params.longitude <= 120.0);
-
-                    if (gps_valid && !gps_initialized)
-                    {
+                    bool gps_valid = (cur_params.latitude >= 1.0 && cur_params.latitude <= 50.0 && 
+                                     cur_params.longitude >= 1.0 && cur_params.longitude <= 120.0);
+                    
+                    if (gps_valid && !gps_initialized) {
                         printf("GPS数据初始化成功，程序正式启动\n");
                         gps_initialized = true;
                     }
                 }
-
+                
                 // 如果GPS尚未初始化，暂停主循环的其他处理
-                if (!gps_initialized)
-                {
+                if (!gps_initialized) {
                     usleep(100000); // 100ms
-                    continue;       // 跳过本次循环的其余部分
+                    continue; // 跳过本次循环的其余部分
                 }
             }
         }
@@ -5321,6 +4878,9 @@ void *main_thread(void *arg)
             cur_params.latitude = 39.20842796;   // 模拟纬度
             cur_params.longitude = 117.22737372; // 模拟经度
             cur_params.heading_angle = 160.0;    // 模拟航向角
+            // 从CAN帧中获取车速
+            control_out.vehicle_speed = revin_4a2.vehicle_speed;
+            cur_params.vehicle_speed = control_out.vehicle_speed;
 
             printf("\n使用模拟GPS数据：latitude = %f, longitude = %f, heading_angle = %f，",
                    cur_params.latitude, cur_params.longitude, cur_params.heading_angle);
@@ -5339,17 +4899,16 @@ void *main_thread(void *arg)
         pthread_mutex_lock(&my_mutex);
 
         // 检查GPS数据是否有效（纬度在1-50之间，经度在1-120之间）
-        bool gps_valid = (cur_params.latitude >= 1.0 && cur_params.latitude <= 50.0 &&
-                          cur_params.longitude >= 1.0 && cur_params.longitude <= 120.0);
-
+        bool gps_valid = (cur_params.latitude >= 1.0 && cur_params.latitude <= 50.0 && 
+                         cur_params.longitude >= 1.0 && cur_params.longitude <= 120.0);
+        
         double Ld = 3.5; // 默认预瞄距离
-
-        if (gps_valid)
-        {
+        
+        if (gps_valid) {
             // GPS数据有效，进行预瞄点计算
             // double Ld = obtainMapData();    //原有算法
             Ld = obtainMapData_optimized();
-
+            
             // 模拟或低速时不进行转向
             if (cur_params.vehicle_speed < 0.1 || enable_gps == false)
             {
@@ -5363,12 +4922,10 @@ void *main_thread(void *arg)
                                         wheelbase, Ld, alpha);
                 // 计算横误差
                 Puresuit_lateral_error = g_lookahead_optimizer.calculateLateralError(cur_params.latitude, cur_params.longitude,
-                                                                                     GIS_map.latitude, GIS_map.longitude,
-                                                                                     cur_params.heading_angle);
+                                                                                    GIS_map.latitude, GIS_map.longitude,
+                                                                                    cur_params.heading_angle);
             }
-        }
-        else
-        {
+        } else {
             // GPS数据无效，不进行预瞄点计算和转向
             std::cout << "警告：GPS数据无效，不进行预瞄点计算和转向控制" << std::endl;
             steer_error = 0;
@@ -5402,9 +4959,10 @@ void *main_thread(void *arg)
             decision_control_in.EPB_park = 0; // 不启用驻车
 
             // 4. 驱动控制 (240)
-            decision_control_in.gear = 3; // 设置档位为1P 3R 5N 9D
+            decision_control_in.gear = 9;       // 设置档位为1P 3R 5N 9D
             // decision_control_in.endSpeed = 0;
-
+            
+            
             // 5. 紧急控制 (251)
             decision_control_in.Emgy_brk_En = 0;           // 不启用急刹
             decision_control_in.Emgy_brk_ReqRmv = 0;       // 不移除急刹
@@ -5414,10 +4972,10 @@ void *main_thread(void *arg)
             decision_control_in.Emgy_RightCrashRemove = 0; // 不移除右触边
 
             // 6. 附件控制 (260)
-            decision_control_in.ADU_Hom = 0;       // 不启用喇叭
-            decision_control_in.ADU_BackLamp = 0;  // 不启用倒车灯
-            decision_control_in.ADU_TurnRLamp = 0; // 不启用右转灯
-            decision_control_in.ADU_TurnLLamp = 0; // 启用左转灯
+            decision_control_in.ADU_Hom = 0;          // 不启用喇叭
+            decision_control_in.ADU_BackLamp = 0;     // 不启用倒车灯
+            decision_control_in.ADU_TurnRLamp = 0;    // 不启用右转灯
+            decision_control_in.ADU_TurnLLamp = 0;    // 启用左转灯
             // decision_control_in.ADU_DblFlashLamp = 0; // 不启用双闪灯
             decision_control_in.ADU_LowBeamLamp = 0;  // 启用近光灯
             decision_control_in.ADU_WidthLamp = 1;    // 启用示宽灯
@@ -5425,7 +4983,7 @@ void *main_thread(void *arg)
             decision_control_in.ADU_FogLamp = 1;      // 不启用雾灯
             decision_control_in.ADU_BrkLamp = 0;      // 不启用制动灯
 
-            // 7. 地图信息
+            //7. 地图信息
             decision_control_in.map_name = "path.txt";
 
             // 根据雷达停车逻辑设置速度和制动
@@ -5439,7 +4997,7 @@ void *main_thread(void *arg)
             else
             {
                 decision_control_in.brake_bar = 0;
-                decision_control_in.endSpeed = 0;
+                decision_control_in.endSpeed = 3.5;
                 decision_control_in.ADU_DblFlashLamp = 1;
                 // decision_control_in.Emgy_brk_En = 0;
                 // decision_control_in.Emgy_brk_ReqRmv=1;
@@ -5472,49 +5030,19 @@ void *main_thread(void *arg)
             printf("雾灯: %d\n", decision_control_in.ADU_FogLamp);
             printf("制动灯: %d\n", decision_control_in.ADU_BrkLamp);
             printf("示宽灯: %d\n", decision_control_in.ADU_WidthLamp);
-        }
+        } 
         convert_and_print_speed(decision_control_in.endSpeed); // 转为速度最小精度的倍数
 
         /****************************
          * 第五部分：CAN通信
          ****************************/
         // 重启标签处理
-        if (cur_params.work_mode == 4) // 遥控接管
+        if (cout_can == -2 && decision_control_in.bStart == 1)
         {
-            cout_can = -3;
-            std::cout << "-------------------REMOTE CONTROL --------------------" << std::endl;
-            continue;
-        }
-        else if (cout_can > 200 && cur_params.work_mode == 0 && decision_control_in.bStart == 1)
-        {
-            // 发送重启信号给监控程序
-            std::cout << "-------------------SENDING RESTART SIGNAL--------------------" << std::endl;
-            
-            // 打开信号文件
-            std::ofstream signal_file("/tmp/maincontrol_restart_signal");
-            if (signal_file.is_open())
-            {
-                // 写入重启信号
-                signal_file << "restart";
-                signal_file.close();
-                std::cout << "重启信号已发送，等待监控程序处理..." << std::endl;
-                
-                // 重置计数器
-                cout_can = 0;
-            }
-            else
-            {
-                std::cerr << "无法打开信号文件，错误代码: " << errno << std::endl;
-            }
-        }
-        // 重启智驾
-        else if ((cout_can == -2 && decision_control_in.bStart == 1) || (cout_can == -3 && cur_params.work_mode == 0 && decision_control_in.bStart == 1))
-        {
-            std::cout << "-------------------DECISION RESETTING--------------------" << std::endl;
-            cout << "cur_params.work_mode:" << cur_params.work_mode << endl;
+            std::cout << "-------------------RESETTING--------------------" << std::endl;
             cout_can = 0;
         }
-        // 决策标签处理
+
         // 发送CAN数据 - 根据ControlState选择不同的控制模式
         if (ControlState == 2)
         {
@@ -5525,115 +5053,18 @@ void *main_thread(void *arg)
         else
         {
             // 决策控制模式
-            send_candata(steer_angle, control_out, decision_control_in, revin_4a2, revin_441, cout_can);
-            // printf("决策模式 - can计数器：cout_can= %d\n", cout_can);
-            printf("决策模式 - can计数器：cout_can= %d\n,work_mode = %d", cout_can, cur_params.work_mode);
+            // send_candata(steer_angle, control_out, decision_control_in, revin_4a2, revin_441, cout_can);
+            printf("决策模式 - can计数器：cout_can= %d\n", cout_can);
         }
 
         // 记录日志
-        logToFile(decision_control_in, cur_params, mapData, GIS_map, Ld, alpha, can_frame_log, Puresuit_lateral_error);
+        logToFile(decision_control_in, cur_params, GIS_map, Ld, alpha, can_frame_log,Puresuit_lateral_error);
 
         // 休眠20毫秒
         usleep(20000);
     }
 
     return NULL;
-}
-
-// ==================== CAN套接字管理函数 ====================
-
-// 安全的CAN套接字重新初始化函数
-bool reinit_can_socket_safe()
-{
-    pthread_mutex_lock(&can_socket_mutex);
-    
-    // 检查重试次数
-    if (can_init_retry_count >= MAX_CAN_INIT_RETRIES)
-    {
-        fprintf(stderr, "CAN套接字重新初始化已达到最大重试次数(%d)\n", MAX_CAN_INIT_RETRIES);
-        return false;
-    }
-    
-    can_init_retry_count++;
-    fprintf(stderr, "开始CAN套接字重新初始化 (第%d次尝试)\n", can_init_retry_count);
-    
-    // 关闭旧套接字
-    if (can_sockfd >= 0)
-    {
-        close(can_sockfd);
-        can_sockfd = -1;
-    }
-    
-    // 等待一段时间再重新初始化
-    usleep(100000); // 100ms
-    
-    // 重新初始化
-    can_sockfd = init_can_socket("can0");
-    if (can_sockfd < 0)
-    {
-        fprintf(stderr, "CAN套接字重新初始化失败\n");
-        can_socket_valid = false;
-        pthread_mutex_unlock(&can_socket_mutex);
-        return false;
-    }
-    
-    // 设置为非阻塞模式
-    int flags = fcntl(can_sockfd, F_GETFL, 0);
-    if (flags >= 0)
-    {
-        fcntl(can_sockfd, F_SETFL, flags | O_NONBLOCK);
-    }
-    
-    can_socket_valid = true;
-    can_stats.increment_reinits();
-    can_init_retry_count = 0; // 重置重试计数
-    
-    fprintf(stderr, "CAN套接字重新初始化成功，新套接字: %d\n", can_sockfd);
-    pthread_mutex_unlock(&can_socket_mutex);
-    return true;
-}
-
-// 验证CAN套接字有效性
-bool validate_can_socket()
-{
-    if (can_sockfd < 0)
-    {
-        return false;
-    }
-    
-    // 检查套接字是否仍然有效
-    int error = 0;
-    socklen_t len = sizeof(error);
-    int retval = getsockopt(can_sockfd, SOL_SOCKET, SO_ERROR, &error, &len);
-    
-    if (retval != 0 || error != 0)
-    {
-        fprintf(stderr, "套接字验证失败: getsockopt返回%d, 错误%d\n", retval, error);
-        return false;
-    }
-    
-    return true;
-}
-
-// 增强的CAN套接字发送前检查
-bool prepare_can_socket_for_send()
-{
-    // 检查套接字有效性标志
-    if (!can_socket_valid)
-    {
-        fprintf(stderr, "CAN套接字标记为无效，尝试重新初始化\n");
-        return reinit_can_socket_safe();
-    }
-    
-    // 验证套接字实际状态
-    if (!validate_can_socket())
-    {
-        fprintf(stderr, "CAN套接字验证失败，标记为无效并重新初始化\n");
-        can_socket_valid = false;
-        return reinit_can_socket_safe();
-    }
-    
-    return true;
 }
 
 // CAN套接字健康检查函数
@@ -5663,10 +5094,8 @@ void *can_monitor_thread(void *arg)
 
     while (1)
     {
-
         // 检查thread_mapRecord状态，如果为1则进入空执行模式
-        if (thread_mapRecord == 1)
-        {
+        if (thread_mapRecord == 1) {
             // printf("CAN监控线程进入等待模式...\n");
             sleep(1);
             continue;
@@ -5675,32 +5104,32 @@ void *can_monitor_thread(void *arg)
         // 每5秒检查一次CAN套接字健康状态
         sleep(5);
 
-        // 使用新的套接字管理系统进行健康检查
-        if (!validate_can_socket())
+        // 使用互斥锁保护全局套接字访问
+        pthread_mutex_lock(&my_mutex);
+
+        if (!check_can_socket_health(can_sockfd))
         {
-            fprintf(stderr, "CAN套接字健康检查失败，标记为无效\n");
-            can_socket_valid = false;
-            
-            // 尝试重新初始化
-            if (reinit_can_socket_safe())
+            fprintf(stderr, "CAN套接字健康检查失败，尝试重新初始化...\n");
+
+            // 关闭旧套接字
+            if (can_sockfd >= 0)
             {
-                fprintf(stderr, "CAN套接字重新初始化成功\n");
+                close(can_sockfd);
+            }
+
+            // 重新初始化
+            can_sockfd = init_can_socket("can0");
+            if (can_sockfd < 0)
+            {
+                fprintf(stderr, "CAN套接字重新初始化失败!\n");
             }
             else
             {
-                fprintf(stderr, "CAN套接字重新初始化失败\n");
+                fprintf(stderr, "CAN套接字重新初始化成功\n");
             }
         }
-        
-        // 打印统计信息（每分钟一次）
-        static int health_check_count = 0;
-        health_check_count++;
-        if (health_check_count >= 12) // 5秒 * 12 = 60秒
-        {
-            printf("CAN统计: 发送成功=%lu, 发送失败=%lu, 最后错误=%d\n",
-                   can_stats.total_sent, can_stats.total_failed, can_stats.last_error_code);
-            health_check_count = 0;
-        }
+
+        pthread_mutex_unlock(&my_mutex);
     }
 
     return NULL;
@@ -5713,8 +5142,7 @@ void canSendThreadFunc(int socket_fd)
     while (running)
     {
         // 检查thread_mapRecord状态，如果为1则进入空执行模式
-        if (thread_mapRecord == 1)
-        {
+        if (thread_mapRecord == 1) {
             // printf("CAN发送线程进入等待模式...\n");
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
             continue;
@@ -5767,13 +5195,6 @@ int main()
 
     _target_ind = 0;
 
-    // 初始化CAN套接字管理相关变量
-    pthread_mutex_init(&can_socket_mutex, NULL);
-    can_socket_valid = false;
-    consecutive_can_errors = 0;
-    can_init_retry_count = 0;
-    // can_stats会通过构造函数自动初始化
-    
     // 初始化全局CAN socket
     can_sockfd = init_can_socket("can0");
     if (can_sockfd < 0)
@@ -5792,12 +5213,8 @@ int main()
     // 设置套接字为非阻塞模式
     int flags = fcntl(can_sockfd, F_GETFL, 0);
     fcntl(can_sockfd, F_SETFL, flags | O_NONBLOCK);
-    
-    // 标记套接字为有效
-    can_socket_valid = true;
 
     printf("CAN套接字初始化成功，套接字描述符: %d\n", can_sockfd);
-    printf("CAN套接字管理系统已启用\n");
 
     // 启动CAN监控线程
     rc = pthread_create(&threads[0], NULL, can_monitor_thread, (void *)t);
@@ -5806,28 +5223,83 @@ int main()
         printf("ERROR; return code from pthread_create() is %d\n", rc);
         exit(-1);
     }
-
-    printf("Creating CAN receiving thread\n");
-    rc = pthread_create(&threads[1], NULL, can_receiving_thread, (void *)2);
-    if (rc)
-    {
+    // 启动UDP线程
+    rc = pthread_create(&threads[1], NULL, udp_thread, (void *)t);
+    if(rc){
         printf("ERROR; return code from pthread_create() is %d\n", rc);
         exit(-1);
     }
-    // 启动UDP线程 test
+
+
     /*
-    */
-    rc = pthread_create(&threads[2], NULL, udp_thread, (void *)t);
-    if (rc)
-    {
-        printf("ERROR; return code from pthread_create() is %d\n", rc);
-        exit(-1);
-    }
+    地图文件读取版本使用决策进行字符串传输
+    // 控制自测test 关闭udp
+    //test 通过传输字符串进行地图读取录制
+    decision_control_in.map_name = "path.txt";
+    decision_control_in.bStart = 1;
+    thread_mapRecord = 0;
 
+    // 构建地图文件路径
+    string filePath = "/home/ztl/gps_path/" + decision_control_in.map_name;
+
+    // 调试信息：显示地图文件路径
+    cout << "尝试读取地图文件: " << filePath << endl;
+    cout << "map_name: '" << decision_control_in.map_name << "'" << endl;
+
+    // 检查map_name是否为空
+    // 检查map_name是否为空或文件是否存在
+    bool need_wait_for_udp = false;
+
+    if (decision_control_in.map_name.empty())
+    {
+        cout << "map_name为空，程序将等待UDP数据传输地图信息" << endl;
+        need_wait_for_udp = true;
+    }
+   else
+   {
+       // 检查文件是否存在
+       ifstream file_check(filePath);
+       if (!file_check.good())
+       {
+           cout << "警告：地图文件不存在或无法访问: " << filePath << endl;
+           cout << "程序将等待UDP传输地图数据" << endl;
+           need_wait_for_udp = true;
+       }
+       else
+       {
+           file_check.close();
+           // 从文件中读取数据并存入map_latitude_v和map_longitude_v
+           readMapDataFromFile(filePath);
+       }
+   }
+
+   // 如果需要等待UDP数据，进入等待循环
+   if (need_wait_for_udp == true && decision_control_in.bStart != 2)
+   {
+       cout << "自动驾驶模式：进入等待模式，等待UDP传输地图数据..." << endl;
+
+       // 等待地图数据通过UDP接收
+       while (map_latitude_v.empty() || map_longitude_v.empty())
+       {
+           // 短暂休眠，避免CPU占用过高
+           usleep(100000); // 100ms
+
+           // 可选：添加超时机制或其他退出条件
+           // 例如：检查是否收到退出信号等
+       }
+
+       cout << "已接收到UDP地图数据，地图点数量: " << map_latitude_v.size() << endl;
+   }
+   else if (need_wait_for_udp == true && decision_control_in.bStart == 2)
+   {
+       cout << "地图录制模式" << endl;
+   }
+    */
     if (map_latitude_v.size() > 0 && map_longitude_v.size() > 0)
     {
         cout << "UDP map read successful!" << endl;
     }
+    
 
     for (size_t i = 0; i < map_latitude_v.size(); ++i)
     {
@@ -5838,15 +5310,23 @@ int main()
     }
     // begin_run = 1; // 控制自测 test
     cout << "等待UDP数据接收完成: begin_run =" << begin_run << endl;
-
+    
     // 等待begin_run变为1（UDP接收完成）
     printf("主程序等待UDP数据接收完成...\n");
-    while (begin_run == 0)
-    {
+    while (begin_run == 0) {
         // 短暂休眠，避免CPU占用过高
         usleep(100000); // 100ms
     }
     printf("UDP数据接收完成，开始创建其他线程...\n");
+
+    // 创建其他线程
+    printf("Creating CAN receiving thread\n");
+    rc = pthread_create(&threads[2], NULL, can_receiving_thread, (void *)2);
+    if (rc)
+    {
+        printf("ERROR; return code from pthread_create() is %d\n", rc);
+        exit(-1);
+    }
 
     printf("Creating main control thread\n");
     rc = pthread_create(&threads[3], NULL, main_thread, (void *)3);
@@ -5908,39 +5388,27 @@ int main()
     }
 
     // 程序结束前清理资源
-    printf("开始清理系统资源...\n");
-    
-    // 1. 打印最终CAN统计信息
-    printf("=== CAN通信最终统计 ===\n");
-    can_stats.print_stats();
-    printf("连续错误次数: %d\n", consecutive_can_errors);
-    
-    // 2. 关闭CAN socket
+    // 1. 关闭CAN socket
     if (can_sockfd >= 0)
     {
-        printf("关闭CAN套接字: %d\n", can_sockfd);
         close(can_sockfd);
         can_sockfd = -1;
     }
-    
-    // 3. 销毁CAN套接字管理互斥锁
-    pthread_mutex_destroy(&can_socket_mutex);
-    printf("CAN套接字管理互斥锁已销毁\n");
 
-    // 4. 关闭日志文件
+    // 2. 关闭日志文件
     if (logFile.is_open())
     {
         logFile.close();
     }
 
-    // 5. 清空全局数组，避免退出时的内存问题
+    // 3. 清空全局数组，避免退出时的内存问题
     eightFrames.clear();
 
-    // 6. 清空容器
+    // 4. 清空容器
     can_frame_log.clear();
     map_latitude_v.clear();
     map_longitude_v.clear();
 
-    std::cout << "程序正常退出，所有资源已清理" << std::endl;
+    std::cout << "程序正常退出，资源已清理" << std::endl;
     return 0;
 }

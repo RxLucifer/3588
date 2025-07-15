@@ -31,5 +31,6 @@ sudo make install
 八.GPS文件夹用于路径采集使用，使用相应GPS名称的文件夹内程序。（现有华测CGI610，博立3000P，INS821三款）
 九.控制程序内Ipopt文件夹为二次规划库，作为MPC基础算法工具库使用
 十.MPC_routine文件夹为MPC算法文件，视情况使用。使用时需要在mainControl_Test/CMakeLists.txt中进行更改
+十一.拷贝Monitor_Control文件夹至根目录下，读取其中README.md文件，根据说明进行配置，完成后即可运行监控程序，可实现恒源快递车辆遥控器断开后重启。
 
 

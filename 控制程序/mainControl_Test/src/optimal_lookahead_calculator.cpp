@@ -1,7 +1,7 @@
 /****************************************************************************/
 /*  项目名称：中邮快递车自动驾驶控制系统 - 优化预瞄距离计算模块                  */
 /*  文件名称：optimal_lookahead_calculator.cpp                              */
-/*  创建时间：2025-06-05                                                     */
+/*  创建时间：2025-07-10                                                     */
 /*  开发人员：RXL                                                          */
 /*  项目描述：基于纯跟踪算法的动态预瞄距离优化计算器                          */
 /*           融合二次规划优化方法，实现最优预瞄距离Ld计算                    */
@@ -466,9 +466,9 @@ public:
         // 即使曲率为0，也应用最小的调整因子，避免预瞄距离过大
         if (curvature > 0.106) { // 高曲率路段
             // 修改高曲率路段的曲率因子计算公式，增大系数以提高转向响应性
-            curvature_factor = 1.0 / (1.0 + curvature * 120.0);
+            curvature_factor = 1.0 / (1.0 + curvature * 180.0);
             // 降低最小限制值，使高曲率路段预瞄距离更短，提高转向灵敏度
-            curvature_factor = std::clamp(curvature_factor, 0.08, 1.0);
+            curvature_factor = std::clamp(curvature_factor, 0.06, 1.0);
             std::cout << "高曲率路段: 应用曲率因子=" << curvature_factor << std::endl;
         } else if (curvature > 0.001) { // 低曲率路段
             curvature_factor = 1.0 / (1.0 + curvature * 40.0);
@@ -497,7 +497,7 @@ public:
         
         // 7. 平滑处理，避免预瞄距离突变
         static double prev_lookahead = optimal_lookahead;
-        double smoothed_lookahead = 0.7 * optimal_lookahead + 0.3 * prev_lookahead;
+        double smoothed_lookahead = 0.87 * optimal_lookahead + 0.13 * prev_lookahead;
         prev_lookahead = smoothed_lookahead;
         
         // std::cout << "步骤6 - 平滑处理: 原始Ld=" << optimal_lookahead 
@@ -518,6 +518,8 @@ public:
                   << "最终Ld=" << smoothed_lookahead << "m" << std::endl;
         std::cout << "============================\n" << std::endl;
         
+        // 修正：确保最终返回的预瞄距离不小于min_lookahead_
+        smoothed_lookahead = std::clamp(smoothed_lookahead, min_lookahead_, max_lookahead_);
         return smoothed_lookahead;
     }
     
